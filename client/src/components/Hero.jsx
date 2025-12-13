@@ -39,15 +39,25 @@ export default function Hero({ profile }) {
           {/* name to the right with accent */}
           <div className="flex-1">
             <div className="flex items-start gap-4">
-              <span className="w-[3px] h-24 bg-blue-500" />
+            {/*  <span className="w-[3px] h-40 bg-blue-500" />  */}
               <div>
                 <p className="text-xs sm:text-sm font-medium uppercase tracking-widest text-gray-400 mb-2">
                   Hey, It's me
                 </p>
-                <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight text-blue-400 tracking-wide uppercase">
-                  Taha
+                <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight text-blue-400 tracking-wide uppercase text-center">
+                  <span className="name-letter" style={{ '--i': 0 }}>T</span>
+                  <span className="name-letter" style={{ '--i': 1 }}>a</span>
+                  <span className="name-letter" style={{ '--i': 2 }}>h</span>
+                  <span className="name-letter" style={{ '--i': 3 }}>a</span>
                   <br />
-                  Essaouir
+                  <span className="name-letter" style={{ '--i': 4 }}>E</span>
+                  <span className="name-letter" style={{ '--i': 5 }}>s</span>
+                  <span className="name-letter" style={{ '--i': 6 }}>s</span>
+                  <span className="name-letter" style={{ '--i': 7 }}>a</span>
+                  <span className="name-letter" style={{ '--i': 8 }}>o</span>
+                  <span className="name-letter" style={{ '--i': 9 }}>u</span>
+                  <span className="name-letter" style={{ '--i': 10 }}>i</span>
+                  <span className="name-letter" style={{ '--i': 11 }}>r</span>
                 </h1>
               </div>
             </div>
@@ -61,8 +71,8 @@ export default function Hero({ profile }) {
         </div>
 
         {/* quote block */}
-        <div className="mt-12 flex items-start gap-4">
-          <span className="w-[3px] h-32 bg-blue-500" />
+        <div className="mt-12 flex items-start gap-3">
+          <span className="w-[10px] h-16  bg-blue-500" />
           <p className="text-base sm:text-lg text-gray-400 leading-relaxed italic">
             "As a Computer and Network Engineer, I am familiar with high-performance web applications that combine robustness. My goal is simple: to transform complex needs into elegant and sustainable technical solutions."
           </p>
@@ -94,6 +104,16 @@ export default function Hero({ profile }) {
         .gradient-animate {
           background-image: linear-gradient(90deg, #ec4899, #06b6d4);
           animation: gradientShift 2s linear infinite;
+        }
+        @keyframes nameCycle {
+          0%, 10% { opacity: 0; filter: blur(6px); transform: translateY(8px); }
+          25%, 80% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+          90%, 100% { opacity: 0; filter: blur(6px); transform: translateY(-8px); }
+        }
+        .name-letter {
+          display: inline-block;
+          animation: nameCycle 2.8s ease-in-out infinite;
+          animation-delay: calc(var(--i) * 0.12s);
         }
       `}</style>
     </section>
