@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply text-slate-100;
+  background-color: #000000;
+}
+
+/* Hide default cursor on the whole app */
+body {
+  cursor: none;
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px; /* center on pointer */
+  margin-top: -14px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+  mix-blend-mode: difference; /* gives that neat glow on dark background */
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px; /* center dot */
+  margin-top: -3px;
+  background: #9bf0ff; /* soft cyan like the screenshot */
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 10000;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+/* Optional: scale ring slightly on interactive elements */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+[role="button"]:hover ~ .custom-cursor {
+  transform: scale(1.1);
+}
+
