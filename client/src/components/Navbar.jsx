@@ -36,50 +36,88 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center transition-all duration-700 ${
-      isVisible ? 'translate-y-0' : '-translate-y-full'
-    } ${isScrolled ? 'pt-4' : 'pt-6'}`}>
-      <div className={`transition-all duration-600 flex items-center ${
-        isScrolled 
-          ? 'bg-[#1a1d2e]/80 backdrop-blur-lg border border-white/10 rounded-full px-3 py-2 shadow-lg gap-4' 
-          : 'bg-[#1a1d2e]/80 backdrop-blur-lg border border-white/10 rounded-full px-3 py-2 shadow-lg gap-4'
-      }`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center transition-all duration-700
+      ${isVisible ? 'translate-y-0' : '-translate-y-full'} mt-4`}>
+      <div className={`
+        flex items-center
+        transition-all duration-700
+        ${isScrolled
+          ? 'justify-between bg-[#18181b]/90 backdrop-blur-lg rounded-full px-2 py-1 shadow-none gap-8 w-[600px]'
+          : 'w-full max-w-7xl justify-between bg-black/60 shadow-none rounded-xl px-2 py-4 gap-4'
+        }
+        ${!isVisible && isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+      `}>
         {/* Logo */}
-        <Link to="/" className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold text-lg hover:scale-125 hover:rotate-[360deg] hover:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all duration-700">
+        <Link
+          to="/"
+          className={`
+            group relative flex items-center justify-center
+            transition-all duration-700
+            font-bold text-lg
+            bg-white text-black
+            ${isScrolled
+              ? 'w-10 h-10 rounded-full text-lg ml-0'
+              : 'w-8 h-8 rounded-xl text-base ml-6'
+            }
+            hover:scale-125 hover:rotate-[360deg] hover:shadow-[0_0_20px_rgba(168,85,247,0.6)]`}
+        >
           <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-cyan-500 transition-all duration-500">TE</span>
         </Link>
 
         {/* Navigation Links - Center */}
-        <div className="flex items-center gap-6">
-          {navLinks.map(({ label, path, icon }) => {
-            const IconComponent = icon;
-            const isActive = location.pathname === path;
-            
-            return (
-              <Link
-                key={label}
-                to={path}
-                className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
-                  isActive ? 'text-white' : 'text-gray-300 hover:text-white'
-                } hover:scale-105 hover:-translate-y-0.5 ${isActive ? 'animate-pulse' : ''}`}
-              >
-                <IconComponent
-                  className={`text-lg transition-all duration-300 ease-out transform
-                    group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce
-                    ${isActive ? 'text-white drop-shadow-[0_0_6px_rgba(168,85,247,0.7)]' : 'text-gray-300'}`}
-                />
-                <span className="relative">
-                  {label}
-                  <span
-                    className={`absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100 ${
-                      isActive ? 'scale-x-100' : ''
-                    }`}
+        <div className={`flex items-center ${isScrolled ? 'gap-6' : 'gap-6 mx-auto'}`}>
+          {navLinks
+            .filter(({ label }) => label !== 'Contact')
+            .map(({ label, path, icon }) => {
+              const IconComponent = icon;
+              const isActive = location.pathname === path;
+              return (
+                <Link
+                  key={label}
+                  to={path}
+                  className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
+                    isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                  } hover:scale-105 hover:-translate-y-0.5 ${isActive ? 'animate-pulse' : ''}`}
+                >
+                  <IconComponent
+                    className={`text-lg transition-all duration-300 ease-out transform
+                      group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce
+                      ${isActive ? 'text-white drop-shadow-[0_0_6px_rgba(168,85,247,0.7)]' : 'text-gray-300'}`}
                   />
-                </span>
-              </Link>
-            );
-          })}
+                  <span className="relative">
+                    {label}
+                    <span
+                      className={`absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100 ${
+                        isActive ? 'scale-x-100' : ''
+                      }`}
+                    />
+                  </span>
+                </Link>
+              );
+            })}
         </div>
+
+        {/* Contact Button à droite seulement en haut */}
+        {!isScrolled && (
+          <Link
+            to="/contact"
+            className="ml-2 mr-6 px-2 py-1 rounded-full bg-indigo-600 text-xs font-medium flex items-center gap-1.5 shadow-md hover:bg-indigo-500 transition-all duration-300"
+          >
+            <HiMail className="text-lg" />
+            Contact Me
+          </Link>
+        )}
+
+        {/* Contact dans la liste quand scrollé */}
+        {isScrolled && (
+          <Link
+            to="/contact"
+            className="ml-2 mr-6 px-2 py-1 rounded-full bg-indigo-600 text-xs font-medium flex items-center gap-1.5 shadow-md hover:bg-indigo-500 transition-all duration-300"
+          >
+            <HiMail className="text-lg" />
+            Contact Me
+          </Link>
+        )}
       </div>
     </nav>
   );

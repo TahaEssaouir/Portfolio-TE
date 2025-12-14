@@ -1,92 +1,61 @@
-export default function About({ profile }) {
-  const avatar = profile?.avatar || profile?.avatar_url || profile?.photo;
-  const resumeLink = profile?.resume_url || profile?.cv_url || profile?.resume || profile?.cv;
-  const initials = (profile?.full_name || 'Full Name')
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map(word => word[0])
-    .join('') || 'ME';
-
-  const stats = [
-    { value: '2+', label: 'Years of experience', sub: 'in front-end' },
-    { value: '10+', label: 'Successful', sub: 'projects delivered' },
-    { value: '99%', label: 'Client', sub: 'satisfaction rate' }
-  ];
-
+export default function About() {
   return (
-    <section id="profil" className="py-16 text-slate-100">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-10">
-        {/* Heading */}
-        <div className="flex items-center gap-3 text-2xl font-semibold text-white">
-          <span className="text-3xl">✴</span>
-          <span>About me</span>
+    <section id="profil" className="py-24 px-4 flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
+      <div className="max-w-3xl w-full mx-auto text-center">
+        <div className="mb-6">
+          <span className="about-title text-xs font-semibold tracking-widest text-sky-600 uppercase select-none relative inline-block px-4 py-1">
+            ✦ About me
+            <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-violet-400 via-cyan-400 to-teal-400 rounded-full blur-[2px] opacity-70 -z-10"></span>
+          </span>
         </div>
+        <style>{`
+          .about-title {
+            letter-spacing: 0.25em;
+            text-shadow: 0 2px 8px #a78bfa99, 0 0px 2px #06b6d4cc;
+            transition: text-shadow 0.3s;
+          }
+          .about-title:hover {
+            text-shadow: 0 4px 16px #a78bfa, 0 0px 8px #06b6d4;
+          }
+        `}</style>
+        <h1 className="text-base sm:text-lg text-gray-400 leading-relaxed italic max-w-2xl text-left mx-auto font-normal mb-8">
+          Hey, I'm <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-300 to-purple-400 not-italic relative inline-block animate-gradientText">Taha Essaouir</span>.
+          I'm a Software Engineer with a strong foundation in Networks, 
+          I specialize in developing robust and scalable web applications.
+          I enjoy solving real-world problems through clean and responsive design and code.
+          <span className="hidden sm:block" />
+          Mon expertise : * Backend : Conception d'architectures API. 
+         * Frontend : Création d'interfaces réactives.
+         * Méthodologie : Approche collaborative, forte gestion du stress et adaptabilité.
+          <span className="hidden sm:block" />
 
-        {/* Main content */}
-        <div className="grid md:grid-cols-2 gap-10 items-start">
-          <div className="flex flex-col gap-6">
-           {/* <h3 className="text-4xl font-bold leading-tight text-white">
-              Hi, I'm {profile?.full_name || 'Taha Essaouir'}
-            </h3>*/}
-
-            <div className="flex items-center gap-4">
-              <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-800 flex items-center justify-center text-2xl font-bold text-slate-200 border border-slate-700">
-                {avatar ? (
-                  <img src={avatar} alt={profile?.full_name || 'Avatar'} className="w-full h-full object-cover" />
-                ) : (
-                  <span>{initials}</span>
-                )}
-              </div>
-
-              {resumeLink ? (
-                <a
-                  href={resumeLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 bg-lime-400 text-slate-900 px-6 py-3 rounded-full font-semibold shadow hover:bg-lime-300 transition"
-                >
-                  <span className="text-lg">⬇</span> Download CV
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 bg-slate-800 text-slate-200 px-6 py-3 rounded-full font-semibold border border-slate-700 cursor-not-allowed"
-                  title="CV indisponible pour le moment"
-                  disabled
-                >
-                  <span className="text-lg">⬇</span> CV bientôt
-                </button>
-              )}
-            </div>
-          </div>
-
-          <div className="space-y-4 text-lg text-slate-200 leading-relaxed">
-            <p>
-              Engineer in Computer Science and Networks graduated from EMSI Casablanca.
-               My career is marked by a double skill: a solid foundation in network infrastructure acquired at ISTA, 
-               enriched by advanced expertise in software engineering.
-            </p>
-            <p>
-              Passionate about the Java/Spring Boot ecosystem and modern interfaces (React, Angular),
-              I put my knowledge into practice through business projects, notably the development of 
-              a medical marketplace and HR management tools.
-            </p>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-6 text-white">
-          {stats.map(stat => (
-            <div key={stat.label} className="flex items-start gap-3">
-              <div className="text-4xl font-extrabold">{stat.value}</div>
-              <div className="leading-snug text-slate-200">
-                <div className="font-semibold">{stat.label}</div>
-                <div className="text-slate-300">{stat.sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+                 <a
+          href="/cv-taha-essaouir.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative inline-flex items-center justify-center px-5 py-2 rounded-full bg-[#18181b] text-white text-lg font-normal border border-[#b983ff] outline-none transition-all duration-300
+            hover:scale-105 mt-16 -ml-24 self-start"
+          style={{ boxShadow: '0 4px 24px 0 #00ffe1a0' }}
+        >
+          <span className="mr-2 px-2 py-0.5 rounded text-white">My Resume</span>
+          {/* Eye icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 inline-block text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M1.5 12s3.5-7 10.5-7 10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z" />
+            <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none"/>
+          </svg>
+          <span className="absolute inset-0 rounded-full pointer-events-none border border-[#b983ff]"></span>
+        </a>
+        </h1>
+        <style>{`
+          @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+          }
+          .animate-gradientText {
+            background-size: 200% 200%;
+            animation: gradientText 2.5s ease-in-out infinite alternate;
+          }
+        `}</style>
       </div>
     </section>
   );
