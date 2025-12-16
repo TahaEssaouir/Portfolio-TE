@@ -29,14 +29,15 @@ export default function Home({
       </div> *}
       
       {/* Content */}
-      <div className="relative">
+      <div className="relative w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
         <Hero profile={profile} />
 
        
         <About profile={profile} />
         <Experience experiences={experiences} />
-        <Projects projects={projects} />
         <Education education={education} />
+        <Projects projects={projects} />
+        
         <Skills
           skills={skills}
           languages={languages}

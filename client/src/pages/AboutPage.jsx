@@ -1,4 +1,7 @@
-export default function AboutPage({ profile }) {
+import Experience from '../components/Experience';
+import Education from '../components/Education';
+
+export default function AboutPage({ profile, experiences = [], education = [] }) {
   const photoSrc = profile?.photo || '/Taha4.jpg';
   return (
     <section className="max-w-5xl mx-auto py-16 px-6 text-slate-100 space-y-16">
@@ -40,6 +43,11 @@ export default function AboutPage({ profile }) {
         </div>
       </div>
 
+      {/* Education Section */}
+      <Education education={education} />
+
+      {/* Experience Section */}
+      <Experience experiences={experiences} />
     </section>
   );
 }
