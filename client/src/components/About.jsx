@@ -52,7 +52,6 @@ export default function About() {
             </svg>
             <span>My Resume</span>
           </a>
-          
           <a
             href="/about"
             className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
