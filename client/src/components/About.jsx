@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MdInfoOutline } from "react-icons/md";
 
 export default function About() {
   return (
@@ -54,12 +55,14 @@ export default function About() {
             </svg>
             <span>My Resume</span>
           </a>
-      <Link
-  to="/about"
-  className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
->
-  <span>More Informations</span>
-</Link>
+          {/* More Informations */}
+          <Link
+            to="/about"
+            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
+          >
+            <MdInfoOutline className="w-5 h-5" />
+            <span>More Informations</span>
+          </Link>
 
         </div>
         <style>{`
