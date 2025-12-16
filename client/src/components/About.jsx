@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function About() {
   return (
     <section id="profil" className="py-0 px-4 flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
@@ -52,17 +54,13 @@ export default function About() {
             </svg>
             <span>My Resume</span>
           </a>
-          <a
-            href="/about"
-            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
-          >
-            {/* Info icon */}
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-4m0-4h.01" />
-            </svg>
-            <span>More Informations</span>
-          </a>
+      <Link
+  to="/about"
+  className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
+>
+  <span>More Informations</span>
+</Link>
+
         </div>
         <style>{`
           @keyframes gradientText {
