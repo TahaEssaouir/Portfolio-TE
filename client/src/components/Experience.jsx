@@ -1,5 +1,6 @@
 import { FaBriefcase, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
 
+
 const realExperiences = [
   {
     id: 1,
@@ -9,21 +10,46 @@ const realExperiences = [
     start_date: "Mars 2025",
     end_date: "Septembre 2025",
     description: (
-      <>
-        <span className="font-semibold">
-           Development of an e-commerce web platform for medical equipment
-           designed for healthcare professionals and individuals.
-          Built and maintained a full-featured application enabling product management, order processing, and user administration 
-          (clients, suppliers, and administrators).
-          Implemented modern, responsive user interfaces using React, integrated secure REST APIs with Spring Boot,
-          and managed data persistence with MySQL.
-          Developed key features including JWT-based authentication, shopping cart, online payments, order tracking, 
-          notifications, and complaint management, ensuring a secure, reliable, and user-friendly experience.
-</span>
-        <ul className="list-disc ml-5 mt-1">
-          <li>Technologie utilisée : Spring boot, JWT, MySQL, React js, Angular, Tailwind CSS.</li>
-        </ul>
-      </>
+      <ul className="list-disc ml-5 space-y-1">
+        <li>
+          <span className="font-semibold">
+          Development of an e-commerce web platform for medical equipment designed for healthcare professionals and individuals.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Built and maintained a full-featured application enabling product management, order processing, and user administration (clients, suppliers, and administrators).
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Implemented a comprehensive admin dashboard using Angular, covering all core functionalities (user management, order management, product management, etc.).
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Developed modern, responsive user interfaces using React, and integrated secure REST APIs with Spring Boot.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Managed data persistence with MySQL, ensuring system reliability and performance.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Implemented key features including JWT-based authentication, shopping cart, Cash on delivery, order tracking, and complaint management.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+          Ensured a secure, reliable, and user-friendly experience.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">Technologies utilisées :</span> Spring boot, JWT, MySQL, React js, Angular, Tailwind CSS.
+        </li>
+      </ul>
     ),
     technologies: "Spring boot, JWT, React js, Angular, MySQL",
     type: "work",
@@ -37,14 +63,45 @@ const realExperiences = [
     start_date: "Juillet 2024",
     end_date: "Août 2024",
     description: (
-      <>
-        <span className="font-semibold">Worked on the development of a workforce rest management system to organize
-           employees, manage absences, and generate rest schedules across different roles and shifts, following defined
-            business rules and operational constraints.</span>
-        <ul className="list-disc ml-5 mt-1">
-          <li>Technologie utilisée : Spring-boot, Angular, MySQL.</li>
-        </ul>
-      </>
+      <ul className="list-disc ml-5 space-y-1">
+        <li>
+          <span className="font-semibold">
+            Designed and developed a local leave and time-off management application for operational teams and internal administrators.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+            Implemented employee management with assignment to groups based on role, terminal, and job function.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+            Built features for planning and managing absences including paid leave, training, sick leave, secondment, and other absence types.
+          </span>
+        </li>
+        <li>
+          <span className="font-semibold">
+            Developed a comprehensive administrative dashboard providing:
+          </span>
+          <ul className="ml-5 mt-1 space-y-1">
+            <li>
+              <span className="font-semibold">* Employee and status management</span>
+            </li>
+            <li>
+              <span className="font-semibold">* Dynamic creation and management of groups</span>
+            </li>
+            <li>
+              <span className="font-semibold">* Intelligent leave and rest scheduling based on job roles, shifts, and operational constraints</span>
+            </li>
+            <li>
+              <span className="font-semibold">* Absence tracking and generation of reliable work schedules</span>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span className="font-semibold">Technologies utilisées :</span> Spring-boot, Angular, MySQL.
+        </li>
+      </ul>
     ),
     technologies: "Spring-boot, Angular, MySQL",
     type: "work",
@@ -52,16 +109,21 @@ const realExperiences = [
   },
   {
     id: 3,
-    title: "Stage d’observation",
+    title: "IT Network Internship",
     company: "Marsa Maroc",
     location: "Casablanca",
     start_date: "Juillet 2023",
     end_date: "",
     description: (
       <>
-        <span className="font-semibold">Stage d’observation chez Marsa Maroc, Casablanca</span>
+       
         <ul className="list-disc ml-5 mt-1">
-          <li>Observation des processus de gestion et de maintenance des réseaux informatiques.</li>
+          <li>Observed IT network management and maintenance processes within an industrial and port environment</li>
+            <li>Participated in the design and deployment of local area networks (LANs)</li>
+            <li>Configured and tested routers and switches to ensure reliable network communication between devices</li>
+            <li>Implemented and validated network connectivity and device-to-device communication</li>
+            <li>Worked with core networking protocols including DNS, DHCP, HTTP, and TCP/IP</li>
+            <li>Worked with core networking protocols including DNS, DHCP, HTTP, and TCP/IP</li>
         </ul>
       </>
     ),
@@ -92,14 +154,7 @@ export default function Experience({ experiences }) {
             ) : (
               data.map((exp) => (
                 <div key={exp.id} className="relative flex items-start">
-                  {/* Image/Icône timeline */}
-                  <div className="absolute -left-12 flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 border-4 border-indigo-400 shadow-lg">
-                    {exp.image ? (
-                      <img src={exp.image} alt="" className="w-6 h-6 object-contain rounded-full" />
-                    ) : (
-                      <FaBriefcase className="text-indigo-400 text-xl" />
-                    )}
-                  </div>
+                
                   {/* Contenu expérience */}
                   <div className="flex flex-col md:flex-row w-full ml-4 gap-8">
                     {/* Colonne gauche : dates, titre, entreprise, lieu */}
@@ -120,7 +175,7 @@ export default function Experience({ experiences }) {
                     </div>
                     {/* Colonne droite : description détaillée */}
                     <div className="md:w-2/3">
-                      <div className="font-semibold text-slate-100 mb-1">
+                      <div className="bg-[#111015] border border-violet-400/30 rounded-2xl shadow-lg p-7 font-semibold text-slate-100 mb-1">
                         {typeof exp.description === "string" ? exp.description : exp.description}
                       </div>
                     </div>
