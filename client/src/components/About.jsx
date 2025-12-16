@@ -1,9 +1,9 @@
 export default function About() {
   return (
-    <section id="profil" className="py-24 px-4 flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
+    <section id="profil" className="py-0 px-4 flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
       <div className="max-w-3xl w-full mx-auto text-center">
         <div className="mb-6">
-          <span className="about-title text-xs font-semibold tracking-widest text-indigo-400 uppercase select-none relative inline-block px-4 py-1">
+          <span className="about-title text-xs font-semibold tracking-widest text-indigo-500 uppercase select-none relative inline-block px-4 py-1">
             ✦ About me
             <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-violet-400 via-cyan-400 to-teal-400 rounded-full blur-[2px] opacity-70 -z-10"></span>
           </span>
@@ -19,14 +19,14 @@ export default function About() {
           }
         `}</style>
         <h1 className="text-base sm:text-lg text-gray-400 leading-relaxed italic max-w-2xl text-left mx-auto font-normal mb-8">
-          Hey, I'm <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-300 to-purple-400 not-italic relative inline-block animate-gradientText">Taha Essaouir</span>.
-          I'm a Software Engineer with a strong foundation in Networks, 
-          I specialize in developing robust and scalable web applications.
-          I enjoy solving real-world problems through clean and responsive design and code.
+          Hey, I'm <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-300 to-fuchsia-300 not-italic relative inline-block animate-gradientText">Taha Essaouir</span>.
+          I'm a computer and network engineer, specializing in Full-Stack Engineering with a background in networking.
+          I create robust and scalable web applications.
+          I enjoy solving real-world problems through clean and efficient design and code.
           <span className="hidden sm:block" />
-          Mon expertise : * Backend : Conception d'architectures API. 
+        {/*   Mon expertise : * Backend : Conception d'architectures API. 
          * Frontend : Création d'interfaces réactives.
-         * Méthodologie : Approche collaborative, forte gestion du stress et adaptabilité.
+         * Méthodologie : Approche collaborative, forte gestion du stress et adaptabilité.*/}
           <span className="hidden sm:block" />
         </h1>
 
@@ -37,12 +37,13 @@ export default function About() {
           </span>
         </div>
 
+             {/* My Resume - More Informations */}
         <div className="flex flex-wrap w-full mt-8 gap-4 justify-center">
           <a
             href="/cv-taha-essaouir.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-[#0A66C2] hover:scale-105 hover:-translate-y-1 transition duration-300"
+            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
           >
             {/* Eye icon */}
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -53,7 +54,7 @@ export default function About() {
           </a>
           <a
             href="/about"
-            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-[#0A66C2] hover:scale-105 hover:-translate-y-1 transition duration-300"
+            className="p-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium flex items-center gap-2 text-white  hover:text-indigo-400 hover:scale-105 hover:-translate-y-1 transition duration-300"
           >
             {/* Info icon */}
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

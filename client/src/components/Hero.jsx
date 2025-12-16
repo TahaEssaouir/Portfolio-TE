@@ -135,7 +135,7 @@ export default function Hero({ profile }) {
               {/* Quote just below Name moved here, next to the blue bar */}
               <div className="text-base sm:text-lg text-gray-500 leading-relaxed italic max-w-md text-left">
                 <span>
-                  "As a Computer and Network Engineer, I am familiar with<br />
+                  "As a Full-Stack Engineer, I am familiar with<br />
                   <span className="block pl-0">
                     high-performance web applications that combine
                   </span>

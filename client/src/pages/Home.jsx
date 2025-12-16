@@ -26,45 +26,13 @@ export default function Home({
           <span className="relative inline-flex h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
         </span>
         <span className="motion-safe:animate-[pulse_2s_ease-in-out_infinite]">Open to new opportunities</span>
-      </div> */}
+      </div> *}
       
       {/* Content */}
       <div className="relative">
         <Hero profile={profile} />
 
-        {/* Animated Marquee Section */}
-        <div className="w-full border-y border-gray-800 bg-[#18181b] overflow-hidden">
-          <div className="relative w-full h-16 flex items-center">
-            <div className="animate-marquee whitespace-nowrap flex items-center w-max mx-auto text-gray-500 text-2xl font-semibold opacity-70 select-none gap-8">
-              <span>FULL-STACK ENGINEER</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>JAVA / SPRING BOOT</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>ANGULAR</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>INTEGRATION</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              {/* Repeat for smooth loop */}
-              <span>FULL-STACK ENGINEER</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>JAVA / SPRING BOOT</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>ANGULAR</span>
-              <span className="mx-4 text-xl text-gray-600">✦</span>
-              <span>INTEGRATION</span>
-            </div>
-          </div>
-          <style>{`
-            @keyframes marquee {
-              0% { transform: translateX(0%); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-marquee {
-              animation: marquee 18s linear infinite;
-            }
-          `}</style>
-        </div>
-
+       
         <About profile={profile} />
         <Experience experiences={experiences} />
         <Projects projects={projects} />
