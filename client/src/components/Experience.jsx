@@ -66,12 +66,10 @@ const realExperiences = [
 
 export default function Experience({ experiences }) {
   const data = experiences && experiences.length > 0 ? experiences : realExperiences;
-  const [openIds, setOpenIds] = useState([]);
+  const [openId, setOpenId] = useState(null);
 
-  const toggleOpen = (id) => {
-    setOpenIds((prev) =>
-      prev.includes(id) ? prev.filter((oid) => oid !== id) : [...prev, id]
-    );
+  const handleToggle = (id) => {
+    setOpenId(openId === id ? null : id);
   };
 
   return (
@@ -82,83 +80,71 @@ export default function Experience({ experiences }) {
             ✦ Expériences ✦
           </span>
         </div>
-        <div className="flex flex-col gap-8">
-          {data.length === 0 ? (
-            <div className="text-center text-slate-400">Aucune expérience à afficher.</div>
-          ) : (
-            data.map((exp) => (
-              <div
-                key={exp.id}
-                className="relative bg-black border border-gray-700 rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 transition-colors duration-300 hover:border-gray-400 hover:shadow-2xl hover:shadow-gray-800/40 group"
+        <div className="space-y-8">
+          {data.map((exp) => (
+            <div
+              key={exp.id}
+              className="bg-black rounded-xl shadow-lg p-6 border border-[#23232a] transition-all duration-200 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative"
+            >
+              {/* Toggle Button */}
+              <button
+                onClick={() => handleToggle(exp.id)}
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-xl bg-transparent hover:bg-[#23232a] transition-all duration-200 shadow-none hover:shadow-lg hover:scale-110 text-gray-400 hover:text-white"
+                aria-label={openId === exp.id ? "Hide achievements" : "Show achievements"}
               >
-                {/* Main Info left */}
-                <div className="flex-1 flex flex-col justify-between min-w-0">
+                {openId === exp.id ? (
+                  <FaChevronUp className="text-xl" />
+                ) : (
+                  <FaChevronDown className="text-xl" />
+                )}
+              </button>
+              <div className="flex items-center mb-2">
+                {/* Image */}
+                <div className="w-14 h-14 rounded-full  flex items-center justify-center mr-4 overflow-hidden">
+                  {exp.image ? (
+                    <img src={exp.image} alt={exp.company} className="object-cover w-full h-full" />
+                  ) : (
+                    <FaBriefcase className="text-indigo-600 text-2xl" />
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">{exp.title}</h3>
+                  <div className="flex items-center text-sm text-gray-400">
+                    <FaBuilding className="mr-1" /> {exp.company}
+                    <span className="mx-2 text-xl">•</span>
+                    <FaMapMarkerAlt className="mr-1" /> {exp.location}
+                  </div>
+                  {/* Date*/}
+                  <div className="inline-block bg-[#18181b] rounded-full px-4 py-1 text-xs text-gray-200 font-normal mt-2">
+                    {exp.start_date} - {exp.end_date ? exp.end_date : "Present"}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-3">
+                <div className="text-gray-400 mb-2">
+                  <span className="font-semibold text-2xl">  {/*Projet :*/}*</span> {exp.project}
+                </div>
+                {/* Description or summary here if needed */}
+                {/* Achievements collapsible */}
+                {openId === exp.id && (
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-100 mb-1 flex items-center gap-2">
-                      {exp.title}
-                    </h3>
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#181824] text-slate-200 text-xs font-semibold shadow-sm mt-2">
-                      <FaCalendarAlt className="inline-block mr-1 mb-0.5 text-slate-400" />
-                      {exp.start_date}
-                      {exp.end_date && ` - ${exp.end_date}`}
-                    </span>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-1">
-                      <span className="flex items-center gap-1.5 text-slate-300 font-medium">
-                        <FaBuilding className="text-indigo-600" />
-                        {exp.company}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-slate-400 font-semibold">
-                        <FaMapMarkerAlt className="text-indigo-600" />
-                        {exp.location}
-                      </span>
-                    </div>
-                    {/* Project Name */}
-                    <div className="mt-4">
-                      <span className="block text-base sm:text-lg font-semibold text-gray-400 mb-1">
-                        {exp.project}
-                      </span>
-                    </div>
-                  </div>
-                  <hr
-                    className="border-0 h-[2px] w-full mt-2 mb-2 bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-60"
-                  />
-                  {/* Key Achievements title and button */}
-                  <div className="flex items-center justify-between mt-2 mb-2">
-                    <span className="text-white font-semibold text-lg">
-                      Key Achievements:
-                    </span>
-                    <button
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-[#111] hover:bg-[#232323] transition-colors border-none shadow-none focus:outline-none"
-                      style={{
-                        boxShadow: "0 2px 8px 0 rgba(0,0,0,0.25)",
-                        border: "none",
-                      }}
-                      onClick={() => toggleOpen(exp.id)}
-                      aria-expanded={openIds.includes(exp.id)}
-                      aria-controls={`achievements-${exp.id}`}
-                    >
-                      {openIds.includes(exp.id) ? (
-                        <FaChevronUp className="text-2xl text-white" />
-                      ) : (
-                        <FaChevronDown className="text-2xl text-white" />
-                      )}
-                    </button>
-                  </div>
-                  {/* description */}
-                  {openIds.includes(exp.id) && (
-                    <ul
-                      id={`achievements-${exp.id}`}
-                      className="list-disc ml-6 space-y-2 text-gray-300 text-sm"
-                    >
+                    <hr className="my-3 border-[#23232a]" />
+                    <div className="font-semibold text-gray-300 mb-2">Key Achievements:</div>
+                    <ul className="list-disc pl-5 text-gray-500 text-xs space-y-1 mb-2">
                       {exp.achievements.map((ach, idx) => (
                         <li key={idx}>{ach}</li>
                       ))}
                     </ul>
-                  )}
-                </div>
+                  </div>
+                )}
+                {exp.technologies && (
+                  <div className="mt-2 text-xs text-indigo-300">
+                    <span className="font-semibold">Technologies :</span> {exp.technologies}
+                  </div>
+                )}
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
