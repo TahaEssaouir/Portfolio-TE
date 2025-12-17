@@ -177,7 +177,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={`
-          fixed inset-0 z-50 flex items-start justify-center pt-8
+          fixed inset-0 z-50 flex items-start justify-center pt-6
           ${mobileOpen && mobileDrawerVisible ? 'block' : 'hidden'}
         `}
         style={{ background: mobileOpen && mobileDrawerVisible ? 'rgba(0,0,0,0.7)' : 'transparent' }}
@@ -185,38 +185,28 @@ export default function Navbar() {
       >
         <nav
           className={`
-            bg-[#18181b]/95 backdrop-blur-lg shadow-2xl rounded-2xl w-[95vw] max-w-md mx-auto
-            flex flex-col pt-8 px-6 pb-8 relative
+            bg-[#18181b]/95 border border-[#28283a] backdrop-blur-lg shadow-2xl rounded-2xl w-[85vw] sm:w-[80vw] max-w-lg mx-auto
+            flex flex-col pt-6 px-4 pb-2 relative
             transition-transform duration-500
             ${mobileOpen && mobileDrawerVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
           `}
           style={{
-            minHeight: '340px',
-            maxHeight: '90vh',
+            minHeight: '240px',
+            maxHeight: '60vh',
             transition: 'all 0.3s'
           }}
           onClick={e => e.stopPropagation()}
         >
           {/* Close Button */}
           <button
-            className="absolute top-4 right-4 text-3xl text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110 hover:text-purple-400 active:rotate-180"
+            className="absolute top-4 right-4 text-3xl text-gray-400 hover:text-red-400 transition-transform duration-300 hover:scale-110 hover:text-purple-400 active:rotate-180"
             onClick={() => setMobileOpen(false)}
             aria-label="Close navigation"
           >
             <HiX className="transition-transform duration-300 transform hover:rotate-90" />
           </button>
-          {/* Logo */}
-          <div className="flex items-center justify-between mb-8">
-            <Link
-              to="/"
-              className="group flex items-center justify-center font-bold text-lg bg-white text-black w-10 h-10 rounded-full hover:scale-110 transition"
-              onClick={() => setMobileOpen(false)}
-            >
-              <span>TE</span>
-            </Link>
-          </div>
-          {/* Navigation Links */}
-          <div className="flex flex-col gap-4 mt-2">
+          {/* Navigation Links Card */}
+          <div className=" rounded-2xl px-2 py-0 flex flex-col gap-0 mt-12">
             {navLinks.map(({ label, path, icon }) => {
               const IconComponent = icon;
               const isActive = location.pathname === path;
@@ -225,30 +215,28 @@ export default function Navbar() {
                   key={label}
                   to={path}
                   className={`
-                    group flex items-center gap-3 text-lg font-semibold px-4 py-3 rounded-xl transition-all duration-200
-                    justify-center
+                    group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
                     ${isActive
-                      ? 'text-white '
-                      : 'text-gray-300 hover:text-white '}
+                      ? 'bg-[#2d2d44] text-white'
+                      : 'text-gray-300 hover:text-white hover:bg-[#232340]'
+                    }
                   `}
                   onClick={() => setMobileOpen(false)}
                 >
-                  <IconComponent
-                    className={`
-                      text-xl transition-all duration-300
-                      group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce
-                      ${isActive ? 'text-white drop-shadow-[0_0_6px_rgba(168,85,247,0.7)]' : 'text-gray-300'}
-                    `}
-                  />
-                  <span className="relative">
-                    {label}
-                    <span
+                  <div className="flex items-center gap-3">
+                    <IconComponent
                       className={`
-                        absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100
-                        ${isActive ? 'scale-x-100' : ''}
+                        text-xl transition-all duration-300
+                        group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                        ${isActive ? 'text-purple-400' : 'text-gray-400'}
                       `}
                     />
-                  </span>
+                    <span className="text-base font-medium">{label}</span>
+                  </div>
+                  {/* Active dot */}
+                  {isActive && (
+                    <span className=""></span>
+                  )}
                 </Link>
               );
             })}

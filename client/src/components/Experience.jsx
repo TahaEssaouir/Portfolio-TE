@@ -11,6 +11,9 @@ const realExperiences = [
     end_date: "Sep 2025",
     description: (
       <ul className="list-disc ml-5 space-y-2">
+           <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-100 mb-2">
+               Medical marketplace platform :  
+           </h3>
         <li>
           <span className="font-semibold">
           Development of an e-commerce web platform for medical equipment designed for healthcare professionals and individuals.
@@ -64,6 +67,9 @@ const realExperiences = [
     end_date: "Aug 2024",
     description: (
       <ul className="list-disc ml-5 space-y-2">
+         <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-100 mb-2">
+              Leave and absence management application :
+           </h3>
         <li>
           <span className="font-semibold">
             Designed and developed a local leave and time-off management application for operational teams and internal administrators.
@@ -117,6 +123,9 @@ const realExperiences = [
     description: (
       <>
         <ul className="list-disc ml-5 mt-1 space-y-3">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-100 mb-2">
+               Network Administrator Intern :  
+           </h3>
 
           <li>
             <span className="font-semibold">
@@ -175,35 +184,37 @@ export default function Experience({ experiences }) {
         {/* Timeline Container */}
         <div className="relative space-y-12">
           {/* Ligne verticale */}
-          <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-slate-800 opacity-20 md:left-8"></div>
+          <div className="absolute left-[-15px] sm:left-[-50px] md:left-[-70px] inset-y-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-slate-800 opacity-20"></div>
 
           {data.length === 0 ? (
             <div className="text-center text-slate-400">Aucune expérience à afficher.</div>
           ) : (
             data.map((exp) => (
-              <div key={exp.id} className="relative flex flex-col md:flex-row gap-6 md:gap-10 group">
+              <div
+                key={exp.id}
+                className="relative flex flex-col md:flex-row gap-4 md:gap-8 group"
+              >
                 {/* Timeline Node */}
-                <div className="absolute left-4 md:left-8 top-0 -translate-x-1/2 flex items-center justify-center">
+                <div className="absolute left-[-20px] sm:left-[-55px] md:left-[-77px] top-8 flex items-center justify-center">
                   <div className="w-4 h-4 rounded-full bg-slate-950 border-2 border-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.6)] group-hover:scale-125 group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-all duration-300 z-10"></div>
                 </div>
 
-                {/* Dates */}
-                <div className="pl-10 md:pl-0 md:w-48 md:text-right flex-shrink-0 pt-0.5">
-                  <span className="text-xs text-slate-400 font-semibold">
-                    <FaCalendarAlt className="inline-block mr-1 mb-0.5" />
-                    {exp.start_date}
-                    {exp.end_date && ` - ${exp.end_date}`}
-                  </span>
-                </div>
-
-                {/* Contenu principal */}
-                <div className="pl-10 md:pl-0 flex-1 pb-8">
+                {/* Bloc Dates + Titre/Entreprise/Lieu */}
+                <div className="flex flex-col items-start min-w-[180px] sm:min-w-[220px] md:min-w-[260px] ml-4 sm:ml-12 md:ml-[-40px] mr-2 sm:mr-4">
+                  {/* Dates */}
+                  <div className="mb-2">
+                    <span className="text-xs text-slate-400 font-semibold">
+                      <FaCalendarAlt className="inline-block mr-1 mb-0.5" />
+                      {exp.start_date}
+                      {exp.end_date && ` - ${exp.end_date}`}
+                    </span>
+                  </div>
                   {/* Titre, entreprise, lieu */}
-                  <div className="mb-4">
-                    <h3 className="text-xl md:text-1xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 group-hover:from-teal-100 group-hover:to-teal-100 transition-colors duration-300">
+                  <div>
+                    <h3 className="text-lg  md:text-1xl font-bold text-gray-200 mb-2">
                       {exp.title}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-slate-400">
+                    <div className="flex flex-col gap-1 text-xs text-slate-400">
                       <span className="flex items-center gap-1.5 text-slate-300 font-medium">
                         <FaBuilding className="text-indigo-600" />
                         {exp.company}
@@ -214,14 +225,18 @@ export default function Experience({ experiences }) {
                       </span>
                     </div>
                   </div>
-                  {/* Carte Description */}
-                  <div className="relative p-6 rounded-2xl bg-[#0B0A10] border border-gray-800/60 hover:border-indigo-500/30 transition-colors duration-500 shadow-xl">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-500/5 rounded-full blur-2xl -z-10"></div>
-                    <div className="flex items-start gap-3 mb-3">
-                      <FaBriefcase className="text-2xl text-indigo-600 mt-1 flex-shrink-0" />
+                </div>
+
+                {/* Carte Description */}
+                <div className="flex-1 pb-8 max-w-sm sm:max-w-md md:max-w-none mx-auto md:mx-0 md:mt-12">
+                  <div className="relative p-4 sm:p-6 rounded-2xl bg-[#0B0A10] border border-gray-800/60 hover:border-indigo-500/30 transition-colors duration-500 shadow-xl">
+                    <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-indigo-500/5 rounded-full blur-2xl -z-10"></div>
+                    <div className="flex items-start gap-2 sm:gap-3 mb-3">
+                      <FaBriefcase className="text-xl sm:text-2xl text-indigo-600 mt-1 flex-shrink-0" />
+                   
                       {/*  Description Text*/}
                       <div className="w-full">
-                        <div className="mt-2 text-sm leading-relaxed text-slate-400 font-light">
+                        <div className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-400 font-light">
                           {typeof exp.description === "string" ? exp.description : exp.description}
                         </div>
                         {/* Technologies utilisées */}
