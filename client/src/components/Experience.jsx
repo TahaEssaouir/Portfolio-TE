@@ -113,7 +113,7 @@ export default function Experience({ experiences }) {
       <div className="max-w-4xl mx-auto px-2 sm:px-4">
         <div className="mb-12 flex justify-center">
           <span
-            className={`about-title text-1xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
+            className={`about-title text-2xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
               ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
             style={{ willChange: "opacity, transform" }}
           >
@@ -126,7 +126,7 @@ export default function Experience({ experiences }) {
               key={exp.id}
               ref={el => cardRefs.current[idx] = el}
               className={
-                `bg-black rounded-xl shadow-lg p-6 border border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl relative
+                `bg-black rounded-xl shadow-lg p-6 border-2 border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl relative
                 ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`
               }
               style={{ willChange: "opacity, transform" }}

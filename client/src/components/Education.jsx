@@ -64,7 +64,7 @@ export default function Education({ education }) {
   }, [data.length]);
 
   return (
-    <section id="formation" className="pt-40 pb-20 bg-black">
+    <section id="formation" className="py-12 sm:py-16 lg:py-24 bg-black">
       <div className="max-w-4xl mx-auto px-2 sm:px-4">
         <div className="mb-12 flex justify-center">
           <span
@@ -81,7 +81,7 @@ export default function Education({ education }) {
               key={edu.id}
               ref={el => cardRefs.current[idx] = el}
               className={
-                `bg-black rounded-xl shadow-lg p-6 border border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative
+                `bg-black rounded-xl shadow-lg p-6 border-2 border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative
                 ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`
               }
               style={{ willChange: "opacity, transform" }}
