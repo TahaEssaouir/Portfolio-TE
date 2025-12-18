@@ -1,5 +1,5 @@
 import { FaBriefcase, FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 
 const realExperiences = [
@@ -68,23 +68,68 @@ export default function Experience({ experiences }) {
   const data = experiences && experiences.length > 0 ? experiences : realExperiences;
   const [openId, setOpenId] = useState(null);
 
+  // Animation on scroll
+  const cardRefs = useRef([]);
+  const [visible, setVisible] = useState(() => Array(data.length).fill(false));
+
+  useEffect(() => {
+    const observers = cardRefs.current.map((ref, idx) => {
+      if (!ref) return null;
+      return new window.IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisible((v) => {
+              const updated = [...v];
+              updated[idx] = true;
+              return updated;
+            });
+          }
+        },
+        { threshold: 0.2 }
+      );
+    });
+
+    observers.forEach((observer, idx) => {
+      if (observer && cardRefs.current[idx]) {
+        observer.observe(cardRefs.current[idx]);
+      }
+    });
+
+    return () => {
+      observers.forEach((observer, idx) => {
+        if (observer && cardRefs.current[idx]) {
+          observer.unobserve(cardRefs.current[idx]);
+        }
+      });
+    };
+  }, [cardRefs, data.length]);
+
   const handleToggle = (id) => {
     setOpenId(openId === id ? null : id);
   };
 
   return (
-    <section id="expérience" className="py-12 sm:py-16 lg:py-24 bg-[#09090c]">
+    <section id="expérience" className="py-12 sm:py-16 lg:py-24 bg-black">
       <div className="max-w-4xl mx-auto px-2 sm:px-4">
         <div className="mb-12 flex justify-center">
-          <span className="about-title text-xs font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1">
+          <span
+            className={`about-title text-1xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
+              ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
+            style={{ willChange: "opacity, transform" }}
+          >
             ✦ Expériences ✦
           </span>
         </div>
         <div className="space-y-8">
-          {data.map((exp) => (
+          {data.map((exp, idx) => (
             <div
               key={exp.id}
-              className="bg-black rounded-xl shadow-lg p-6 border border-[#23232a] transition-all duration-200 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative"
+              ref={el => cardRefs.current[idx] = el}
+              className={
+                `bg-black rounded-xl shadow-lg p-6 border border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl relative
+                ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`
+              }
+              style={{ willChange: "opacity, transform" }}
             >
               {/* Toggle Button */}
               <button
@@ -100,15 +145,15 @@ export default function Experience({ experiences }) {
               </button>
               <div className="flex items-center mb-2">
                 {/* Image */}
-                <div className="w-14 h-14 rounded-full  flex items-center justify-center mr-4 overflow-hidden">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mr-4 overflow-hidden bg-[#23232a]">
                   {exp.image ? (
                     <img src={exp.image} alt={exp.company} className="object-cover w-full h-full" />
                   ) : (
-                    <FaBriefcase className="text-indigo-600 text-2xl" />
+                    <FaBriefcase className="text-indigo-700 text-2xl" />
                   )}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">{exp.title}</h3>
+                  <h3 className="text-lg font-bold text-white">• {exp.title}</h3>
                   <div className="flex items-center text-sm text-gray-400">
                     <FaBuilding className="mr-1" /> {exp.company}
                     <span className="mx-2 text-xl">•</span>
@@ -122,7 +167,7 @@ export default function Experience({ experiences }) {
               </div>
               <div className="mt-3">
                 <div className="text-gray-400 mb-2">
-                  <span className="font-semibold text-2xl">  {/*Projet :*/}*</span> {exp.project}
+                  <span className="font-semibold text-2xl">  {/*Projet :*/}-</span> {exp.project}
                 </div>
                 {/* Description or summary here if needed */}
                 {/* Achievements collapsible */}

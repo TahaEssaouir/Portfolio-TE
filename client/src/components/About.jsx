@@ -19,7 +19,7 @@ export default function About() {
 
         {/* ===== Title ===== */}
         <div className="mb-8">
-          <span className="about-title text-xs font-semibold tracking-widest text-indigo-500 uppercase select-none relative inline-block px-4 py-1">
+          <span className="about-title text-1xl font-semibold tracking-widest text-indigo-500 uppercase select-none relative inline-block px-4 py-1">
             ✦ About me ✦
             <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-violet-400 via-cyan-400 to-teal-400 rounded-full blur-[2px] opacity-70 -z-10"></span>
           </span>

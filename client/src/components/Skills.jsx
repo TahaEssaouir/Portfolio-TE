@@ -1,51 +1,61 @@
-export default function Skills({ skills, languages, certifications, interests }) {
-  const grouped = skills.reduce((acc, skill) => {
-    acc[skill.category] = acc[skill.category] || [];
-    acc[skill.category].push(skill.name);
-    return acc;
-  }, {});
+const skillsData = [
+  {
+    category: "Frontend",
+    color: "bg-[#0c223a]",
+    items: [
+      { name: "React", img: "/react.png" },
+      // ...ajoute d'autres skills ici si besoin...
+    ],
+  },
+  {
+    category: "Backend",
+    color: "bg-[#0c1a0c]",
+    items: [
+      { name: "Node.js", img: "/nodejs.png" },
+      // ...ajoute d'autres skills ici si besoin...
+    ],
+  },
+  {
+    category: "Tools",
+    color: "bg-[#1a1020]",
+    items: [
+      { name: "Git", img: "/git.webp" },
+      // ...ajoute d'autres skills ici si besoin...
+    ],
+  },
+];
 
+export default function Skills() {
   return (
     <section id="compétences" className="py-10 text-slate-100">
-      <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-bold mb-4 text-white">Compétences techniques</h2>
-          <div className="space-y-3">
-            {Object.entries(grouped).map(([cat, items]) => (
-              <div key={cat}>
-                <h3 className="font-semibold text-sm">{cat}</h3>
-                <p className="text-sm text-slate-300">{items.join(' | ')}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold mb-2">Langues</h3>
-            <ul className="text-sm text-slate-300 space-y-1">
-              {languages.map(lang => (
-                <li key={lang.id}>{lang.name} – {lang.level}</li>
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-8 justify-center">
+        {skillsData.map((cat) => (
+          <div
+            key={cat.category}
+            className={`${cat.color} rounded-2xl border border-gray-400/30 p-6 flex-1 min-w-[200px] max-w-sm shadow-lg`}
+          >
+            <div className="flex items-center mb-6">
+              <span className="inline-block w-3 h-3 rounded-full bg-white mr-2" />
+              <span className="text-xl font-bold text-white">{cat.category}</span>
+            </div>
+            <div className="grid grid-cols-1 gap-5">
+              {cat.items.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="flex flex-col items-center justify-center bg-black/30 rounded-xl py-6 transition hover:bg-black/50"
+                >
+                  <img
+                    src={skill.img}
+                    alt={skill.name}
+                    className="w-12 h-12 object-contain mb-2"
+                    loading="lazy"
+                  />
+                  <span className="mt-2 text-base font-semibold text-white">{skill.name}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-
-          <div>
-            <h3 className="font-semibold mb-2">Certifications</h3>
-            <ul className="text-sm text-slate-300 space-y-1">
-              {certifications.map(c => (
-                <li key={c.id}>{c.name} ({c.provider})</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-2">Centres d&apos;intérêt</h3>
-            <p className="text-sm text-slate-300">
-              {interests.map(i => i.name).join(' · ')}
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
