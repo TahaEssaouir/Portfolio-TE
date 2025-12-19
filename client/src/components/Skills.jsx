@@ -1,41 +1,101 @@
 import React, { useRef, useEffect, useState } from "react";
+import { FaServer, FaTools, FaDatabase, FaCloud, FaCode, FaCubes } from "react-icons/fa";
+import { MdOutlineWeb } from "react-icons/md";
+import { SiSpring, SiTypescript, SiTailwindcss } from "react-icons/si";
 
 const skillsData = [
+
 	{
-		category: "Frontend",
-		color: "bg-[#0c223a]",
-		items: [
-			{ name: "React", img: "/react.png" },
-			{ name: "JavaScript", img: "/javascript.png" },
-			{ name: "Angular", img: "/angular.png" },
-			{ name: "TypeScript", img: "/typescript.png" },
-			{ name: "Tailwind CSS", img: "/tailwindcss.png" },
-			// ...ajoute d'autres skills ici si besoin...
-		],
-	},
-	{
-		category: "Backend",
+		category: "Backend & Languages",
+		icon: <FaServer className="text-blue-400" />,
 		color: "bg-[#0c1a0c]",
 		items: [
 			{ name: "Java", img: "/java.png" },
 			{ name: "Spring Boot", img: "/springboot.png" },
-			{ name: "Django", img: "/django.png" },
+      { name: "Python", img: "/pythonn.png" },
+      { name: "Django", img: "/django.png" },
+      { name: "REST APIs" },
 			{ name: "Node.js", img: "/nodejs.png" },
-			{ name: "MySQL", img: "/MySQL.png" },
-			{ name: "PostgreSQL", img: "/PostgreSQL.png" },
+       { name: "Flutter", img: "/flutter.png" },
 		],
 	},
+
 	{
-		category: "Tools",
+		category: "Data",
+		icon: <FaDatabase className="text-green-400" />,
+		color: "bg-[#1a1a2a]",
+		items: [
+			{ name: "MySQL", img: "/mysqll.png" },
+			{ name: "PostgreSQL", img: "/PostgreSQL.png" },
+			{ name: "SQL Server" },
+      { name: "MongoDB", img: "/mongodb.png" },
+		],
+	},
+
+	{
+		category: "Frontend",
+		icon: <MdOutlineWeb className="text-purple-400" />,
+		color: "bg-[#0c223a]",
+		items: [
+			{ name: "React.js", img: "/react.png" },
+			{ name: "Angular", img: "/angular.png" },
+			{ name: "TypeScript", img: "/typescript.png" },
+			{ name: "Tailwind CSS", img: "/tailwindcss.png" },
+     
+		],
+	},
+
+	{
+		category: "DevOps & Tools",
+		icon: <FaTools className="text-orange-400" />,
 		color: "bg-[#1a1020]",
 		items: [
 			{ name: "Jwt", img: "/jwt.png" },
-			{ name: "Git", img: "/git.png" },
+			{ name: "Git & GitHub", img: "/git.png" },
 			{ name: "Docker", img: "/docker.png" },
-			// ...ajoute d'autres skills ici si besoin...
+      { name: "Azure DevOps" },
+      { name: "Postman", img: "/postman.png" },
+      { name: "Swagger", img: "/swagger.png" },
+      
 		],
 	},
+
 ];
+
+// Ajoute ce style dans le composant (ou dans un fichier CSS global si tu préfères)
+const marqueeStyle = `
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.skills-marquee-outer {
+  overflow: hidden;
+  width: 100%;
+  background: rgba(1, 0, 0, 0.85); /* fond plus clair */
+  padding: 1.5rem 0;
+  border: 2px solid rgba(27, 76, 253, 0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px 0 rgba(27, 76, 253, 0.25);
+  margin-top: 6rem;
+}
+.skills-marquee-inner {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+.skills-marquee-logo {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  padding: 0.5rem;
+  transition: box-shadow 0.3s;
+}
+.skills-marquee-logo:hover {
+  box-shadow: 0 4px 24px 0 rgba(30,144,255,0.25);
+}
+`;
 
 export default function Skills() {
 	// Animation on scroll (comme Experience)
@@ -75,6 +135,8 @@ export default function Skills() {
 		};
 	}, []);
 
+
+
 	return (
 		<section id="compétences" className="py-12 sm:py-16 lg:py-24 bg-black">
 			<div className="mb-12 flex justify-center">
@@ -86,84 +148,63 @@ export default function Skills() {
 					✦ Skills ✦
 				</span>
 			</div>
-			<div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row flex-wrap gap-8 justify-center items-center">
+			<div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-start">
 				{skillsData.map((cat, idx) => (
 					<div
 						key={cat.category}
 						ref={(el) => (cardRefs.current[idx] = el)}
-						className={`rounded-2xl p-6 w-full max-w-xs bg-black bg-opacity-80 border-2 border-white/10 shadow-lg transition-all duration-500
+						className={`bg-black rounded-2xl p-6 w-full max-w-md border-2 border-[#23232a] shadow-lg transition-all duration-500
               hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl
               ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
 						style={{ willChange: "opacity, transform" }}
 					>
-						<h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-							<span className="inline-block w-3 h-3 bg-white rounded-full mr-2"></span>
-							{cat.category}
-						</h2>
-						<div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-items-center">
+						<div className="flex items-center gap-3 mb-4">
+							<div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#23232a] text-2xl">
+								{cat.icon}
+							</div>
+							<h2 className="text-xl font-bold text-white">{cat.category}</h2>
+						</div>
+						<div className="flex flex-wrap gap-3">
 							{cat.items.map((item) => (
-								<div
+								<span
 									key={item.name}
-									className="flex flex-col items-center justify-center bg-black/30 rounded-lg p-1 hover:bg-black/50 transition max-w-[110px] w-full"
+									className="px-4 py-1 rounded-full border border-[#2e4369] bg-[#19233a] text-[#7ec3ff] text-sm font-medium"
+									style={{ display: "inline-block" }}
 								>
-									<div className="flex items-center justify-center w-14 h-14 bg-transparent mb-1">
-										<img
-											src={item.img}
-											alt={item.name}
-											className={
-												item.name === "React"
-													? "w-14 h-14 object-contain"
-													: item.name === "TypeScript"
-													? "w-25 h-25 object-contain"
-													: item.name === "JavaScript"
-													? "w-8 h-8 object-contain"
-													: item.name === "Spring Boot"
-													? "w-8 h-8 object-contain"
-													: item.name === "Node.js"
-													? "w-32 h-32 object-contain"
-													: item.name === "MySQL"
-													? "w-20 h-20 object-contain"
-													: item.name === "Docker"
-													? "w-14 h-14 object-contain"
-													: item.name === "Git"
-													? "w-8 h-8 object-contain"
-													: item.name === "Django"
-													? "w-14 h-14 object-contain"
-													: item.name === "Angular"
-													? "w-20 h-20 object-contain"
-													: "w-10 h-10 object-contain"
-											}
-											style={
-												item.name === "React"
-													? { maxWidth: "60px", maxHeight: "66px" }
-													: item.name === "TypeScript"
-													? { maxWidth: "85px", maxHeight: "85px" }
-													: item.name === "JavaScript"
-													? { maxWidth: "26px", maxHeight: "26px" }
-													: item.name === "Spring Boot"
-													? { maxWidth: "32px", maxHeight: "32px" }
-													: item.name === "Node.js"
-													? { maxWidth: "128px", maxHeight: "128px" }
-													: item.name === "MySQL"
-													? { maxWidth: "80px", maxHeight: "80px" }
-													: item.name === "Docker"
-													? { maxWidth: "56px", maxHeight: "56px" }
-													: item.name === "Git"
-													? { maxWidth: "32px", maxHeight: "32px" }
-													: item.name === "Django"
-													? { maxWidth: "56px", maxHeight: "56px" }
-													: item.name === "Angular"
-													? { maxWidth: "80px", maxHeight: "80px" }
-													: { maxWidth: "40px", maxHeight: "40px" }
-											}
-										/>
-									</div>
-									<span className="text-sm font-medium text-center">{item.name}</span>
-								</div>
+									{item.name}
+								</span>
 							))}
 						</div>
 					</div>
 				))}
+			</div>
+
+			{/* Section logos en marche */}
+			<style>{marqueeStyle}</style>
+			<div className="skills-marquee-outer mt-24">
+				<div className="skills-marquee-inner">
+					{[...skillsData
+						.flatMap(cat => cat.items)
+						.filter(item => item.img),
+					  ...skillsData
+						.flatMap(cat => cat.items)
+						.filter(item => item.img)
+					].map((item, idx) => (
+						<img
+							key={item.name + idx}
+							src={item.img}
+							alt={item.name}
+							className={
+								item.img === "/mysqll.png"
+									? "scale-120 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+									: item.img === "/django.png"
+										? "scale-110 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+										: "h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+							}
+							title={item.name}
+						/>
+					))}
+				</div>
 			</div>
 		</section>
 	);

@@ -197,7 +197,8 @@ export default function Experience({ experiences }) {
                     {exp.technologies.split(",").map((tech, i) => (
                       <span
                         key={i}
-                        className="px-4 py-1 rounded-full border border-gray-700 bg-black text-gray-100 text-sm font-medium"
+                        className="px-4 py-1 rounded-full border border-[#2e4369] bg-[#19233a] text-[#7ec3ff] text-sm font-medium"
+
                         style={{ display: "inline-block" }}
                       >
                         {tech.trim()}
