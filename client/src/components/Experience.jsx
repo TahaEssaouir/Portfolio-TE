@@ -20,9 +20,9 @@ const realExperiences = [
       "Implemented key features including JWT-based authentication, shopping cart, Cash on delivery, order tracking, and complaint management.",
       "Ensured a secure, reliable, and user-friendly experience."
     ],
-    technologies: "Spring boot, JWT, React js, Angular, MySQL",
+    technologies: "Spring boot, JWT, React js, Tailwind CSS, Angular, MySQL",
     type: "work",
-    image: "",
+    image: "/chronotech.png",
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const realExperiences = [
     ],
     technologies: "Spring-boot, Angular, MySQL",
     type: "work",
-    image: "",
+    image: "/marsamaroc.jpg", 
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const realExperiences = [
     ],
     technologies: "",
     type: "work",
-    image: "",
+    image: "/marsamaroc.jpg",
   },
 ];
 
@@ -73,7 +73,8 @@ export default function Experience({ experiences }) {
   const [visible, setVisible] = useState(() => Array(data.length).fill(false));
 
   useEffect(() => {
-    const observers = cardRefs.current.map((ref, idx) => {
+    const refsSnapshot = [...cardRefs.current];
+    const observers = refsSnapshot.map((ref, idx) => {
       if (!ref) return null;
       return new window.IntersectionObserver(
         ([entry]) => {
@@ -90,19 +91,19 @@ export default function Experience({ experiences }) {
     });
 
     observers.forEach((observer, idx) => {
-      if (observer && cardRefs.current[idx]) {
-        observer.observe(cardRefs.current[idx]);
+      if (observer && refsSnapshot[idx]) {
+        observer.observe(refsSnapshot[idx]);
       }
     });
 
     return () => {
       observers.forEach((observer, idx) => {
-        if (observer && cardRefs.current[idx]) {
-          observer.unobserve(cardRefs.current[idx]);
+        if (observer && refsSnapshot[idx]) {
+          observer.unobserve(refsSnapshot[idx]);
         }
       });
     };
-  }, [cardRefs, data.length]);
+  }, [data.length]);
 
   const handleToggle = (id) => {
     setOpenId(openId === id ? null : id);
@@ -145,9 +146,18 @@ export default function Experience({ experiences }) {
               </button>
               <div className="flex items-center mb-2">
                 {/* Image */}
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mr-4 overflow-hidden bg-[#23232a]">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mr-4 overflow-hidden bg-white">
                   {exp.image ? (
-                    <img src={exp.image} alt={exp.company} className="object-cover w-full h-full" />
+                    <img
+                      src={exp.image}
+                      alt={exp.company}
+                      className={
+                        exp.company === "ChronoTech"
+                          ? "object-contain w-20 h-20 scale-125" // encore un peu plus zoomé
+                          : "object-contain w-12 h-12"
+                      }
+                      style={{ background: "white" }}
+                    />
                   ) : (
                     <FaBriefcase className="text-indigo-700 text-2xl" />
                   )}
@@ -183,8 +193,16 @@ export default function Experience({ experiences }) {
                   </div>
                 )}
                 {exp.technologies && (
-                  <div className="mt-2 text-xs text-indigo-300">
-                    <span className="font-semibold">Technologies :</span> {exp.technologies}
+                  <div className="mt-2 flex flex-wrap gap-3">
+                    {exp.technologies.split(",").map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-4 py-1 rounded-full border border-gray-700 bg-black text-gray-100 text-sm font-medium"
+                        style={{ display: "inline-block" }}
+                      >
+                        {tech.trim()}
+                      </span>
+                    ))}
                   </div>
                 )}
               </div>

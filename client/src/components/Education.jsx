@@ -11,6 +11,7 @@ const realEducation = [
     start_year: "2022",
     end_year: "2025",
     description: "In-depth engineering training focused on software development (Java/J2EE, .NET), web architecture, mobile development, network and systems development and administration.",
+    image: "/emsi.png", // ajout de l'image EMSI
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const realEducation = [
     start_year: "2020",
     end_year: "2022",
     description: "Specialized technical training in network administration, computer maintenance and system security (Cisco, Linux, Windows Server).",
+    image: "/ofppt.png", // ajout de l'image OFPPT
   }
 ];
 
@@ -82,26 +84,57 @@ export default function Education({ education }) {
               ref={el => cardRefs.current[idx] = el}
               className={
                 `bg-black rounded-xl shadow-lg p-6 border-2 border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative
-                ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`
+                ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+                w-full sm:w-full md:w-auto`
               }
               style={{ willChange: "opacity, transform" }}
             >
               <div className="flex items-center mb-2">
-                {/* Icon Education*/}
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mr-4 overflow-hidden bg-[#23232a]">
-                  <FaGraduationCap className="text-indigo-700 text-2xl" />
+                {/* Icon/Image Education */}
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mr-4 overflow-hidden bg-white">
+                  {edu.image ? (
+                    <img
+                      src={edu.image}
+                      alt={edu.school}
+                      className={
+                        edu.school.includes("EMSI")
+                          ? "object-contain w-16 h-16 scale-110"
+                          : edu.school.includes("ISTA")
+                          ? "object-contain w-16 h-16 scale-110"
+                          : "object-contain w-12 h-12"
+                      }
+                      style={{ background: "white" }}
+                    />
+                  ) : (
+                    <FaGraduationCap className="text-indigo-700 text-2xl" />
+                  )}
                 </div>
                 {/* content */}
-                <div>
-                  <h3 className="text-lg font-bold text-white">• {edu.school}</h3>
-                  <div className="flex items-center text-sm text-gray-400">
-                    <FaUniversity className="mr-1" /> {edu.degree}
-                    <span className="mx-2 text-xl">•</span>
-                    <FaMapMarkerAlt className="mr-1" /> {edu.location}
+                <div className="flex-1">
+                  {/* Desktop layout */}
+                  <div className="hidden sm:block">
+                    <h3 className="text-lg font-bold text-white">• {edu.school}</h3>
+                    <div className="flex items-center text-sm text-gray-400">
+                      <FaUniversity className="mr-1" /> {edu.degree}
+                      <span className="mx-2 text-xl">•</span>
+                      <FaMapMarkerAlt className="mr-1" /> {edu.location}
+                    </div>
+                    <div className="inline-block bg-[#18181b] rounded-full px-4 py-1 text-xs text-gray-200 font-normal mt-2">
+                      {edu.start_year} - {edu.end_year}
+                    </div>
                   </div>
-                  {/* Years badge */}
-                  <div className="inline-block bg-[#18181b] rounded-full px-4 py-1 text-xs text-gray-200 font-normal mt-2">
-                    {edu.start_year} - {edu.end_year}
+                  {/* Mobile layout */}
+                  <div className="block sm:hidden">
+                    <h3 className="text-base font-bold text-white mb-1">• {edu.school}</h3>
+                    <div className="text-sm text-gray-400 mb-1 flex items-center">
+                      <FaUniversity className="mr-1" /> {edu.degree}
+                    </div>
+                    <div className="text-sm text-gray-400 mb-1 flex items-center">
+                      <FaMapMarkerAlt className="mr-1" /> {edu.location}
+                    </div>
+                    <div className="inline-block bg-[#18181b] rounded-full px-4 py-1 text-xs text-gray-200 font-normal">
+                      {edu.start_year} - {edu.end_year}
+                    </div>
                   </div>
                 </div>
               </div>

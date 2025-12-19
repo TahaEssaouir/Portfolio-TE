@@ -18,10 +18,13 @@ export default function About() {
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center">
 
         {/* ===== Title ===== */}
-        <div className="mb-8">
-          <span className="about-title text-1xl font-semibold tracking-widest text-indigo-500 uppercase select-none relative inline-block px-4 py-1">
+        <div className="mb-8 flex justify-center">
+          <span
+            className={`about-title text-2xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
+              opacity-100 translate-y-0`}
+            style={{ willChange: "opacity, transform" }}
+          >
             ✦ About me ✦
-            <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-violet-400 via-cyan-400 to-teal-400 rounded-full blur-[2px] opacity-70 -z-10"></span>
           </span>
         </div>
 
