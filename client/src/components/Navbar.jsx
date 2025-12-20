@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { HiHome, HiUser, HiCollection, HiLightningBolt, HiMail, HiMenu, HiX } from 'react-icons/hi';
+import { HiHome, HiUser, HiCollection, HiLightningBolt, HiMail, HiMenu, HiX, HiBriefcase } from 'react-icons/hi';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,9 +47,10 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Home', path: '/', icon: HiHome },
-    { label: 'About', path: '/about', icon: HiUser },
-    { label: 'Projets', path: '/projects', icon: HiCollection },
-    { label: 'Skills', path: '/skills', icon: HiLightningBolt },
+    { label: 'About', path: '#about', icon: HiUser },
+    { label: 'Skills', path: '#compétences', icon: HiLightningBolt },
+    { label: 'Experience', path: '#expérience', icon: HiBriefcase }, // <-- new link
+    { label: 'Projets', path: '#projets', icon: HiCollection },
     { label: 'Contact', path: '/contact', icon: HiMail }
   ];
 
@@ -71,9 +72,10 @@ export default function Navbar() {
         <div className={`
           hidden sm:flex items-center
           transition-all duration-700
+          max-w-3xl w-full mx-auto
           ${isScrolled
-            ? 'justify-between bg-[#18181b]/90 backdrop-blur-lg rounded-full px-2 py-1 shadow-none gap-8 w-[600px]'
-            : 'w-full max-w-7xl justify-between bg-black/60 shadow-none rounded-xl px-2 py-4 gap-4'
+            ? 'justify-between bg-[#18181b]/90 backdrop-blur-lg rounded-full px-2 py-1 shadow-none gap-8'
+            : 'justify-between bg-black/60 shadow-none rounded-xl px-2 py-4 gap-4'
           }
           ${!isVisible && isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}
         `}>
@@ -100,6 +102,106 @@ export default function Navbar() {
               .filter(({ label }) => label !== 'Contact')
               .map(({ label, path, icon }) => {
                 const IconComponent = icon;
+                // Special handling for Home, About, Skills, Experience, Projets anchor links
+                if (label === 'Home') {
+                  return (
+                    <a
+                      key={label}
+                      href={path}
+                      onClick={e => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 text-gray-300 hover:text-white hover:scale-105 hover:-translate-y-0.5`}
+                    >
+                      <IconComponent className="text-lg transition-all duration-300 ease-out transform group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce text-gray-300" />
+                      <span className="relative">
+                        {label}
+                        <span className="absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
+                    </a>
+                  );
+                }
+                if (label === 'Skills') {
+                  return (
+                    <a
+                      key={label}
+                      href={path}
+                      onClick={e => {
+                        e.preventDefault();
+                        const el = document.getElementById('compétences');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 text-gray-300 hover:text-white hover:scale-105 hover:-translate-y-0.5`}
+                    >
+                      <IconComponent className="text-lg transition-all duration-300 ease-out transform group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce text-gray-300" />
+                      <span className="relative">
+                        {label}
+                        <span className="absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
+                    </a>
+                  );
+                }
+                if (label === 'About') {
+                  return (
+                    <a
+                      key={label}
+                      href={path}
+                      onClick={e => {
+                        e.preventDefault();
+                        const el = document.getElementById('about');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 text-gray-300 hover:text-white hover:scale-105 hover:-translate-y-0.5`}
+                    >
+                      <IconComponent className="text-lg transition-all duration-300 ease-out transform group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce text-gray-300" />
+                      <span className="relative">
+                        {label}
+                        <span className="absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
+                    </a>
+                  );
+                }
+                if (label === 'Experience') {
+                  return (
+                    <a
+                      key={label}
+                      href={path}
+                      onClick={e => {
+                        e.preventDefault();
+                        const el = document.getElementById('expérience');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 text-gray-300 hover:text-white hover:scale-105 hover:-translate-y-0.5`}
+                    >
+                      <IconComponent className="text-lg transition-all duration-300 ease-out transform group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce text-gray-300" />
+                      <span className="relative">
+                        {label}
+                        <span className="absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
+                    </a>
+                  );
+                }
+                if (label === 'Projets') {
+                  return (
+                    <a
+                      key={label}
+                      href={path}
+                      onClick={e => {
+                        e.preventDefault();
+                        const el = document.getElementById('projets');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className={`group relative flex items-center gap-2 text-sm font-medium transition-all duration-300 text-gray-300 hover:text-white hover:scale-105 hover:-translate-y-0.5`}
+                    >
+                      <IconComponent className="text-lg transition-all duration-300 ease-out transform group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300 group-hover:animate-bounce text-gray-300" />
+                      <span className="relative">
+                        {label}
+                        <span className="absolute left-0 bottom-0 block h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-purple-500 to-sky-500 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
+                    </a>
+                  );
+                }
                 const isActive = location.pathname === path;
                 return (
                   <Link
@@ -129,24 +231,34 @@ export default function Navbar() {
 
           {/* Contact Button à droite seulement en haut */}
           {!isScrolled && (
-            <Link
-              to="/contact"
+            <a
+              href="#contact"
+              onClick={e => {
+                e.preventDefault();
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="ml-2 mr-6 px-2 py-1 rounded-full bg-indigo-600 text-xs font-medium flex items-center gap-1.5 shadow-md hover:bg-indigo-500 transition-all duration-300"
             >
               <HiMail className="text-lg" />
               Contact Me
-            </Link>
+            </a>
           )}
 
           {/* Contact dans la liste quand scrollé */}
           {isScrolled && (
-            <Link
-              to="/contact"
+            <a
+              href="#contact"
+              onClick={e => {
+                e.preventDefault();
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="ml-2 mr-6 px-2 py-1 rounded-full bg-indigo-600 text-xs font-medium flex items-center gap-1.5 shadow-md hover:bg-indigo-500 transition-all duration-300"
             >
               <HiMail className="text-lg" />
               Contact Me
-            </Link>
+            </a>
           )}
         </div>
 
@@ -209,6 +321,192 @@ export default function Navbar() {
           <div className=" rounded-2xl px-2 py-0 flex flex-col gap-0 mt-12">
             {navLinks.map(({ label, path, icon }) => {
               const IconComponent = icon;
+              // Special handling for Home, About, Skills, Experience, Projets anchor links in mobile drawer
+              if (label === 'Home') {
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
+              if (label === 'Skills') {
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById('compétences');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
+              if (label === 'About') {
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById('about');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
+              if (label === 'Experience') {
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById('expérience');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
+              if (label === 'Projets') {
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById('projets');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
+              if (label === 'Contact') {
+                return (
+                  <a
+                    key={label}
+                    href="#contact"
+                    onClick={e => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        const el = document.getElementById('contact');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }, 200);
+                    }}
+                    className={`
+                      group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200
+                      text-gray-300 hover:text-white hover:bg-[#232340]
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent
+                        className={`
+                          text-xl transition-all duration-300
+                          group-hover:scale-125 group-hover:-translate-y-[2px] group-hover:text-purple-300
+                          text-gray-400
+                        `}
+                      />
+                      <span className="text-base font-medium">{label}</span>
+                    </div>
+                  </a>
+                );
+              }
               const isActive = location.pathname === path;
               return (
                 <Link

@@ -10,13 +10,12 @@ const skillsData = [
 		icon: <FaServer className="text-blue-400" />,
 		color: "bg-[#0c1a0c]",
 		items: [
-			{ name: "Java", img: "/java.png" },
-			{ name: "Spring Boot", img: "/springboot.png" },
-      { name: "Python", img: "/pythonn.png" },
-      { name: "Django", img: "/django.png" },
-      { name: "REST APIs" },
-			{ name: "Node.js", img: "/nodejs.png" },
-       { name: "Flutter", img: "/flutter.png" },
+		{ name: "Java", img: "/java.png" },
+		{ name: "Spring Boot", img: "/springboot.png" },
+		{ name: "Python", img: "/pythonn.png" },
+		{ name: "REST APIs" },
+		{ name: "Node.js", img: "/nodejs.png" },
+		{ name: "Flutter", img: "/flutter.png" },
 		],
 	},
 
@@ -50,9 +49,9 @@ const skillsData = [
 		icon: <FaTools className="text-orange-400" />,
 		color: "bg-[#1a1020]",
 		items: [
-			{ name: "Jwt", img: "/jwt.png" },
-			{ name: "Git & GitHub", img: "/git.png" },
-			{ name: "Docker", img: "/docker.png" },
+		{ name: "Jwt", img: "/jwt.png" },
+		{ name: "Git & GitHub", img: "/git.png" },
+	   { name: "Docker", img: "/docker.png" },
       { name: "Azure DevOps" },
       { name: "Postman", img: "/postman.png" },
       { name: "Swagger", img: "/swagger.png" },
@@ -71,29 +70,31 @@ const marqueeStyle = `
 .skills-marquee-outer {
   overflow: hidden;
   width: 100%;
-  background: rgba(1, 0, 0, 0.85); /* fond plus clair */
-  padding: 1.5rem 0;
-  border: 2px solid rgba(27, 76, 253, 0.2);
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 32px 0 rgba(27, 76, 253, 0.25);
-  margin-top: 6rem;
+  background: linear-gradient(90deg, #18181b 60%, #232340 100%);
+  padding: 1.25rem 0;
+  border: 1.5px solid rgba(168,85,247,0.18);
+  border-radius: 2rem;
+  box-shadow: 0 2px 16px 0 rgba(168,85,247,0.10), 0 1px 8px 0 rgba(27,76,253,0.10);
+  margin-top: 4rem;
+  backdrop-filter: blur(2px);
 }
 .skills-marquee-inner {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
   animation: marquee 25s linear infinite;
   width: max-content;
 }
 .skills-marquee-logo {
-  background: #fff;
+  background: #18181b;
   border-radius: 1rem;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px 0 rgba(168,85,247,0.08);
   padding: 0.5rem;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 .skills-marquee-logo:hover {
-  box-shadow: 0 4px 24px 0 rgba(30,144,255,0.25);
+  box-shadow: 0 4px 24px 0 rgba(168,85,247,0.18);
+  transform: scale(1.08) rotate(-2deg);
 }
 `;
 
@@ -182,7 +183,7 @@ export default function Skills() {
 			{/* Section logos en marche */}
 			<style>{marqueeStyle}</style>
 			<div className="skills-marquee-outer mt-24">
-				<div className="skills-marquee-inner">
+				<div className="skills-marquee-inner ">
 					{[...skillsData
 						.flatMap(cat => cat.items)
 						.filter(item => item.img),

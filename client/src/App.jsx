@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
-import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
+import About from './components/About';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -62,11 +62,10 @@ function App() {
                 projects={projects}
                 education={education}
                 skills={skills}
-            
               />
             }
           />
-          <Route path="/about" element={<AboutPage profile={profile} education={education} />} />
+          <Route path="/about" element={<About profile={profile} />} />
           <Route path="/projects" element={<ProjectsPage projects={projects} />} />
           <Route path="/skills" element={<SkillsPage skills={skills} />} />
           <Route path="/contact" element={<ContactPage profile={profile} />} />

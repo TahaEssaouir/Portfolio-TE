@@ -10,8 +10,7 @@ export default function Home({
   profile,
   experiences,
   projects,
-  education,
-  skills
+  education
 }) {
   return (
     <div className="relative">
@@ -31,15 +30,16 @@ export default function Home({
 
        
         <About profile={profile} />
-         <Skills skills={skills}
-        
-        />
+        <Skills />
         <Experience experiences={experiences} />
         <Education education={education} />
-        <Projects projects={projects} />
-        
+        <div id="projets">
+          <Projects projects={projects} />
+        </div>
        
-        <Contact />
+        <div id="contact">
+          <Contact />
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export default function Hero({ profile }) {
           {/* Intro */}
           <div className="flex flex-col items-center lg:items-start">
             <p className="text-xs sm:text-sm font-medium uppercase tracking-widest text-gray-400">
-              Hey, It's me
+              Hello, It's me
             </p>
 
             <h1 className="font-extrabold leading-tight tracking-wide uppercase text-teal-300 mt-1">
