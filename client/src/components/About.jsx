@@ -42,7 +42,7 @@ export default function About() {
       >
         {/* Left: Text */}
         <div className="flex-1 flex flex-col justify-center items-start">
-          <h2 className="text-4xl sm:text-4xl font-extrabold text-indigo-500 mb-6 leading-tight">
+          <h2 className="about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500 mb-6 leading-tight">
             ✦ About Me ✦
             <div className="w-20 h-1 bg-white rounded-full mt-2" />
           </h2>

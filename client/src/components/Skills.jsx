@@ -54,7 +54,7 @@ const skillsData = [
 	   { name: "Docker", img: "/docker.png" },
       { name: "Azure DevOps" },
       { name: "Postman", img: "/postman.png" },
-      { name: "Swagger", img: "/swagger.png" },
+     
       
 		],
 	},
@@ -154,7 +154,7 @@ export default function Skills() {
 		<section id="compétences" className="py-12 sm:py-16 lg:py-24 bg-black">
 			<div className="mb-12 flex justify-center">
 				<span
-					className={`text-4xl sm:text-4xl font-extrabold text-indigo-500 mb-6 leading-tight uppercase select-none px-4 py-1 transition-all duration-500
+					className={`about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
       ${visible.some((v) => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
 					style={{ willChange: "opacity, transform" }}
 				>
