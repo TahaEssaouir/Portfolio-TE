@@ -7,6 +7,11 @@ html, body {
   background-color: #000000;
 }
 
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Hide default cursor on the whole app */
 body {
   cursor: none;
@@ -51,5 +56,23 @@ a:hover ~ .custom-cursor,
 button:hover ~ .custom-cursor,
 [role="button"]:hover ~ .custom-cursor {
   transform: scale(1.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
