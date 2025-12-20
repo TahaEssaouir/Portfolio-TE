@@ -1,22 +1,58 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 export default function Hero({ profile }) {
   const email = profile?.email || "tessaouir@gmail.com";
 
+  // Animation on scroll for left and right blocks
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const [leftVisible, setLeftVisible] = useState(false);
+  const [rightVisible, setRightVisible] = useState(false);
+
+  useEffect(() => {
+    if (!leftRef.current || !rightRef.current) return;
+
+    const leftObserver = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setLeftVisible(true);
+      },
+      { threshold: 0.2 }
+    );
+    leftObserver.observe(leftRef.current);
+
+    const rightObserver = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setRightVisible(true);
+      },
+      { threshold: 0.2 }
+    );
+    rightObserver.observe(rightRef.current);
+
+    return () => {
+      leftObserver.disconnect();
+      rightObserver.disconnect();
+    };
+  }, []);
+
   return (
     <section
       id="accueil"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent pt-4 px-4 sm:px-6"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent  px-4 sm:px-6"
     >
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-stretch gap-14">
 
         {/* ================= LEFT ================= */}
-        <div className="flex flex-col justify-between w-full flex-1 text-center lg:text-left lg:pl-16">
+        <div
+          ref={leftRef}
+          className={`flex flex-col justify-between w-full flex-1 text-center lg:text-left lg:pl-12 lg:-ml-8 transition-all duration-700
+            ${leftVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
+        >
 
           {/* Intro */}
           <div className="flex flex-col items-center lg:items-start">
             <p className="text-xs sm:text-sm font-medium uppercase tracking-widest text-gray-400">
-              Hello, It's me
+              Hi, It's me
             </p>
 
             <h1 className="font-extrabold leading-tight tracking-wide uppercase text-teal-300 mt-1">
@@ -37,8 +73,10 @@ export default function Hero({ profile }) {
               </span>
             </h1>
 
+
+
             {/* Divider */}
-            <div className="w-full max-w-md my-8">
+            <div className="w-80 my-8 lg:ml-[-40px]">
               <span className="block w-full h-[2px] bg-gradient-to-r from-white/0 via-white/60 to-white/0 rounded-full animate-fadeInLine" />
             </div>
           </div>
@@ -104,7 +142,7 @@ export default function Hero({ profile }) {
             <div className="text-3xl font-extrabold text-teal-300">2022 – 2025</div>
             <div className="text-gray-400 mt-1">3 years of experience</div>
             <div className="flex items-start gap-4 mt-8 max-w-md">
-              <span className="w-[3px] h-[70px] bg-teal-300" />
+              <span className="w-[5px] h-[70px] bg-teal-300" />
               <p className="italic text-gray-500">
                 "As a Full-Stack Engineer, I design high-performance web applications that combine robustness, clarity, and scalability."
               </p>
@@ -113,13 +151,19 @@ export default function Hero({ profile }) {
         </div>
 
         {/* ================= RIGHT (Desktop) ================= */}
-        <div className="hidden lg:flex flex-col flex-1 items-start justify-start pr-4 mt-[-8px]">
-          <div className="text-4xl font-extrabold text-teal-300">2022 – 2025</div>
-          <div className="text-gray-400 mt-1">3 years of experience</div>
+        <div
+          ref={rightRef}
+          className={`hidden lg:block transition-all duration-700
+            ${rightVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
+        >
+          <div className="text-5xl font-extrabold text-teal-300">2022 – 2025</div>
+          <div className="text-gray-400 text-3xl mt-1">3 years of experience</div>
 
+         {/*  Description */}
           <div className="flex items-start gap-4 mt-8 max-w-md">
-            <span className="w-[3px] h-[70px] bg-teal-300" />
-            <p className="italic text-gray-500">
+            <span className="w-[10px] h-[150px] bg-teal-300" />
+            <p className="italic text-2xl text-gray-500">
               "As a Full-Stack Engineer, I design high-performance web applications that combine robustness, clarity, and scalability."
             </p>
           </div>

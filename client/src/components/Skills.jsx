@@ -61,7 +61,6 @@ const skillsData = [
 
 ];
 
-// Ajoute ce style dans le composant (ou dans un fichier CSS global si tu préfères)
 const marqueeStyle = `
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -70,9 +69,8 @@ const marqueeStyle = `
 .skills-marquee-outer {
   overflow: hidden;
   width: 100%;
-  background: linear-gradient(90deg, #18181b 60%, #232340 100%);
   padding: 1.25rem 0;
-  border: 1.5px solid rgba(168,85,247,0.18);
+  border: 1.5px solid rgba(12, 1, 1, 0.18);
   border-radius: 2rem;
   box-shadow: 0 2px 16px 0 rgba(168,85,247,0.10), 0 1px 8px 0 rgba(27,76,253,0.10);
   margin-top: 4rem;
@@ -136,19 +134,34 @@ export default function Skills() {
 		};
 	}, []);
 
+  // Animation for logos marquee
+  const marqueeRef = useRef(null);
+  const [marqueeVisible, setMarqueeVisible] = useState(false);
 
+  useEffect(() => {
+    if (!marqueeRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setMarqueeVisible(true);
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(marqueeRef.current);
+    return () => observer.disconnect();
+  }, []);
 
 	return (
 		<section id="compétences" className="py-12 sm:py-16 lg:py-24 bg-black">
 			<div className="mb-12 flex justify-center">
 				<span
-					className={`about-title text-2xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
+					className={`text-4xl sm:text-4xl font-extrabold text-indigo-500 mb-6 leading-tight uppercase select-none px-4 py-1 transition-all duration-500
       ${visible.some((v) => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
 					style={{ willChange: "opacity, transform" }}
 				>
 					✦ Skills ✦
 				</span>
 			</div>
+			{/* Cards Skills */}
 			<div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-start">
 				{skillsData.map((cat, idx) => (
 					<div
@@ -180,33 +193,39 @@ export default function Skills() {
 				))}
 			</div>
 
-			{/* Section logos en marche */}
+			{/* Section logos en marche avec animation */}
 			<style>{marqueeStyle}</style>
-			<div className="skills-marquee-outer mt-24">
-				<div className="skills-marquee-inner ">
-					{[...skillsData
-						.flatMap(cat => cat.items)
-						.filter(item => item.img),
-					  ...skillsData
-						.flatMap(cat => cat.items)
-						.filter(item => item.img)
-					].map((item, idx) => (
-						<img
-							key={item.name + idx}
-							src={item.img}
-							alt={item.name}
-							className={
-								item.img === "/mysqll.png"
-									? "scale-120 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
-									: item.img === "/django.png"
-										? "scale-110 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
-										: "h-16 w-16 object-contain opacity-90 skills-marquee-logo"
-							}
-							title={item.name}
-						/>
-					))}
-				</div>
-			</div>
+			<div
+        className={`skills-marquee-outer mt-24 transition-all duration-700 ${
+          marqueeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+        ref={marqueeRef}
+        style={{ willChange: "opacity, transform" }}
+      >
+        <div className="skills-marquee-inner ">
+          {[...skillsData
+            .flatMap(cat => cat.items)
+            .filter(item => item.img),
+            ...skillsData
+            .flatMap(cat => cat.items)
+            .filter(item => item.img)
+          ].map((item, idx) => (
+            <img
+              key={item.name + idx}
+              src={item.img}
+              alt={item.name}
+              className={
+                item.img === "/mysqll.png"
+                  ? "scale-120 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+                  : item.img === "/django.png"
+                    ? "scale-110 h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+                    : "h-16 w-16 object-contain opacity-90 skills-marquee-logo"
+              }
+              title={item.name}
+            />
+          ))}
+        </div>
+      </div>
 		</section>
 	);
 }
