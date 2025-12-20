@@ -22,23 +22,22 @@ export default function Home({
           <span className="relative inline-flex h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
         </span>
         <span className="motion-safe:animate-[pulse_2s_ease-in-out_infinite]">Open to new opportunities</span>
-      </div> *}
+      </div> */}
       
       {/* Content */}
       <div className="relative w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
-        <Hero profile={profile} />
-
-       
-        <About profile={profile} />
-        <Skills />
-        <Experience experiences={experiences} />
-        <Education education={education} />
-        <div id="projets">
-          <Projects projects={projects} />
-        </div>
-       
-        <div id="contact">
-          <Contact />
+        <div className="space-y-10 md:space-y-0 flex flex-col">
+          <Hero profile={profile} />
+          <About profile={profile} />
+          <Skills />
+          <Experience experiences={experiences} />
+          <Education education={education} />
+          <div id="projets" className="scroll-mt-16 sm:scroll-mt-20">
+            <Projects projects={projects} />
+          </div>
+          <div id="contact" className="scroll-mt-16 sm:scroll-mt-20">
+            <Contact />
+          </div>
         </div>
       </div>
     </div>
