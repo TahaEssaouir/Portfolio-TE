@@ -10,8 +10,10 @@ export default function Contact() {
          ✦ Get In Touch ✦
         </h2>
         {/* description */}
-        <p className="text-center max-w-2xl text-lg text-gray-400 mb-0 mt-4">
+        <p className="text-center text-gray-500 text-sm">
           Do you have a technical challenge to overcome or an innovative project in mind?
+        </p>
+        <p className="text-center text-gray-500 text-sm">
           I am always ready to collaborate on new ideas.
         </p>
       </div>

@@ -83,7 +83,7 @@ export default function Education({ education }) {
               key={edu.id}
               ref={el => cardRefs.current[idx] = el}
               className={
-                `bg-black rounded-xl shadow-lg p-6 border-2 border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-400 hover:shadow-2xl relative
+                `bg-black rounded-xl shadow-lg p-6 border-2 border-[#23232a] transition-all duration-500 hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl relative
                 ${visible[idx] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
                 w-full sm:w-full md:w-auto`
               }

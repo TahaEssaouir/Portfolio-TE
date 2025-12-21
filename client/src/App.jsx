@@ -10,6 +10,7 @@ import SkillsPage from './pages/SkillsPage';
 import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import About from './components/About';
+import ProjectDetails from './pages/ProjectDetails';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/projects" element={<ProjectsPage projects={projects} />} />
           <Route path="/skills" element={<SkillsPage skills={skills} />} />
           <Route path="/contact" element={<ContactPage profile={profile} />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
         </Routes>
       </main>
       <Footer />
