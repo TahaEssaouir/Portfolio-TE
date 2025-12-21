@@ -65,7 +65,7 @@ export default function Projects({ projects }) {
     <section id="projets" className="py-10 text-slate-100">
       <div className="mb-12 flex justify-center">
         <h2 className="about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500">
-          ✦ Projets ✦
+          ✦ Projects ✦
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
@@ -95,6 +95,7 @@ export default function Projects({ projects }) {
               {/* <p className="text-gray-300 text-lg mb-1">{project.category}</p> */}
               <p className="mb-6 text-gray-400">{project.description}</p>
               <div className="flex flex-wrap gap-3 mt-auto">
+                <h4 className="text-sm text-gray-400 mr-2">Technologies:</h4>
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}
