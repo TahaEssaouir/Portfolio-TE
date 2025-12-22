@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 const LanguageContext = createContext();
 
@@ -6,7 +6,7 @@ export const LanguageProvider = ({ children }) => {
   const [lang, setLang] = useState('en'); // Default to English
 
   const toggleLang = () => {
-    setLang(prev => prev === 'en' ? 'fr' : 'en');
+    setLang(prev => (prev === 'en' ? 'fr' : 'en'));
   };
 
   return (
@@ -14,6 +14,11 @@ export const LanguageProvider = ({ children }) => {
       {children}
     </LanguageContext.Provider>
   );
+};
+
+// ✅ نضيفو هذا
+export const useLanguage = () => {
+  return useContext(LanguageContext);
 };
 
 export default LanguageContext;
