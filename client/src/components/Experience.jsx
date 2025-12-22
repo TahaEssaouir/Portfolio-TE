@@ -1,62 +1,91 @@
 import { FaBriefcase, FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
+import { useLanguage } from '../contexts/LanguageContext';
 
 
 const realExperiences = [
   {
     id: 1,
-    title: "Software Engineer Intern",
+    title: { en: "Software Engineer Intern", fr: "Stagiaire Ingénieur Logiciel" },
     company: "ChronoTech",
     location: "Morocco",
     start_date: "Mar 2025",
     end_date: "Sep 2025",
-    project: "Medical marketplace platform",
-    achievements: [
-      "Development of an e-commerce web platform for medical equipment designed for healthcare professionals and individuals.",
-      "Built and maintained a full-featured application enabling product management, order processing, and user administration (clients, suppliers, and administrators).",
-      "Implemented a comprehensive admin dashboard using Angular, covering all core functionalities (user management, order management, product management, etc.).",
-      "Developed modern, responsive user interfaces using React, and integrated secure REST APIs with Spring Boot.",
-      "Managed data persistence with MySQL, ensuring system reliability and performance.",
-      "Implemented key features including JWT-based authentication, shopping cart, Cash on delivery, order tracking, and complaint management.",
-      "Ensured a secure, reliable, and user-friendly experience."
-    ],
+    project: { en: "Medical marketplace platform", fr: "Plateforme de marketplace médicale" },
+    achievements: {
+      en: [
+        "Development of an e-commerce web platform for medical equipment designed for healthcare professionals and individuals.",
+        "Built and maintained a full-featured application enabling product management, order processing, and user administration (clients, suppliers, and administrators).",
+        "Implemented a comprehensive admin dashboard using Angular, covering all core functionalities (user management, order management, product management, etc.).",
+        "Developed modern, responsive user interfaces using React, and integrated secure REST APIs with Spring Boot.",
+        "Managed data persistence with MySQL, ensuring system reliability and performance.",
+        "Implemented key features including JWT-based authentication, shopping cart, Cash on delivery, order tracking, and complaint management.",
+        "Ensured a secure, reliable, and user-friendly experience."
+      ],
+      fr: [
+        "Développement d'une plateforme web e-commerce pour équipements médicaux destinée aux professionnels de santé et aux particuliers.",
+        "Construction et maintenance d'une application complète permettant la gestion des produits, le traitement des commandes et l'administration des utilisateurs (clients, fournisseurs et administrateurs).",
+        "Implémentation d'un tableau de bord d'administration complet utilisant Angular, couvrant toutes les fonctionnalités de base (gestion des utilisateurs, gestion des commandes, gestion des produits, etc.).",
+        "Développement d'interfaces utilisateur modernes et responsives utilisant React, et intégration d'APIs REST sécurisées avec Spring Boot.",
+        "Gestion de la persistance des données avec MySQL, assurant la fiabilité et les performances du système.",
+        "Implémentation de fonctionnalités clés incluant l'authentification basée sur JWT, le panier d'achat, le paiement à la livraison, le suivi des commandes et la gestion des réclamations.",
+        "Assurance d'une expérience sécurisée, fiable et conviviale."
+      ]
+    },
     technologies: "Spring boot, JWT, React js, Tailwind CSS, Angular, MySQL",
     type: "work",
     image: "/chronotech.png",
   },
   {
     id: 2,
-    title: "Software Engineer Intern",
+    title: { en: "Software Engineer Intern", fr: "Stagiaire Ingénieur Logiciel" },
     company: "Marsa Maroc",
     location: "Morocco",
     start_date: "Jul 2024",
     end_date: "Aug 2024",
-    project: "Leave and absence management application",
-    achievements: [
-      "Designed and developed a local leave and time-off management application for operational teams and internal administrators.",
-      "Implemented employee management with assignment to groups based on role, terminal, and job function.",
-      "Built features for planning and managing absences including paid leave, training, sick leave, secondment, and other absence types.",
-      "Developed a comprehensive administrative dashboard providing: Employee and status management, Dynamic creation and management of groups, Intelligent leave and rest scheduling based on job roles, shifts, and operational constraints, Absence tracking and generation of reliable work schedules."
-    ],
+    project: { en: "Leave and absence management application", fr: "Application de gestion des congés et absences" },
+    achievements: {
+      en: [
+        "Designed and developed a local leave and time-off management application for operational teams and internal administrators.",
+        "Implemented employee management with assignment to groups based on role, terminal, and job function.",
+        "Built features for planning and managing absences including paid leave, training, sick leave, secondment, and other absence types.",
+        "Developed a comprehensive administrative dashboard providing: Employee and status management, Dynamic creation and management of groups, Intelligent leave and rest scheduling based on job roles, shifts, and operational constraints, Absence tracking and generation of reliable work schedules."
+      ],
+      fr: [
+        "Conception et développement d'une application locale de gestion des congés et absences pour les équipes opérationnelles et les administrateurs internes.",
+        "Implémentation de la gestion des employés avec affectation à des groupes basés sur le rôle, le terminal et la fonction.",
+        "Construction de fonctionnalités pour la planification et la gestion des absences incluant les congés payés, la formation, les congés maladie, la mise à disposition et autres types d'absences.",
+        "Développement d'un tableau de bord d'administration complet fournissant : Gestion des employés et statuts, Création et gestion dynamique des groupes, Planification intelligente des congés et repos basée sur les rôles professionnels, quarts et contraintes opérationnelles, Suivi des absences et génération d'horaires de travail fiables."
+      ]
+    },
     technologies: "Spring-boot, Angular, MySQL",
     type: "work",
     image: "/marsamaroc.jpg", 
   },
   {
     id: 3,
-    title: "IT Network Internship",
+    title: { en: "IT Network Internship", fr: "Stage en Réseaux Informatiques" },
     company: "Marsa Maroc",
     location: "Morocco",
     start_date: "Jul 2023",
     end_date: "",
-    project: "Network Administrator Intern",
-    achievements: [
-      "Observed IT network management and maintenance processes within an industrial and port environment.",
-      "Participated in the design and deployment of local area networks (LANs).",
-      "Configured and tested routers and switches to ensure reliable network communication between devices.",
-      "Implemented and validated network connectivity and device-to-device communication.",
-      "Worked with core networking protocols including DNS, DHCP, HTTP, and TCP/IP."
-    ],
+    project: { en: "Network Administrator Intern", fr: "Stagiaire Administrateur Réseau" },
+    achievements: {
+      en: [
+        "Observed IT network management and maintenance processes within an industrial and port environment.",
+        "Participated in the design and deployment of local area networks (LANs).",
+        "Configured and tested routers and switches to ensure reliable network communication between devices.",
+        "Implemented and validated network connectivity and device-to-device communication.",
+        "Worked with core networking protocols including DNS, DHCP, HTTP, and TCP/IP."
+      ],
+      fr: [
+        "Observation des processus de gestion et de maintenance des réseaux informatiques dans un environnement industriel et portuaire.",
+        "Participation à la conception et au déploiement de réseaux locaux (LAN).",
+        "Configuration et test de routeurs et commutateurs pour assurer une communication réseau fiable entre les appareils.",
+        "Implémentation et validation de la connectivité réseau et de la communication appareil à appareil.",
+        "Travail avec les protocoles réseau de base incluant DNS, DHCP, HTTP et TCP/IP."
+      ]
+    },
     technologies: "",
     type: "work",
     image: "/marsamaroc.jpg",
@@ -64,8 +93,21 @@ const realExperiences = [
 ];
 
 
-export default function Experience({ experiences }) {
-  const data = experiences && experiences.length > 0 ? experiences : realExperiences;
+export default function Experience() {
+  const { lang } = useLanguage();
+
+  const texts = {
+    en: {
+      title: "✦ Experiences ✦",
+      achievements: "Key Achievements:",
+    },
+    fr: {
+      title: "✦ Expériences ✦",
+      achievements: "Réalisations clés:",
+    }
+  };
+
+  const data = realExperiences;
   const [openId, setOpenId] = useState(null);
 
   // Animation on scroll
@@ -118,7 +160,7 @@ export default function Experience({ experiences }) {
               ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
             style={{ willChange: "opacity, transform" }}
           >
-            ✦ Expériences ✦
+            {texts[lang].title}
           </span>
         </div>
         <div className="space-y-8">
@@ -163,7 +205,7 @@ export default function Experience({ experiences }) {
                   )}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">• {exp.title}</h3>
+                  <h3 className="text-lg font-bold text-white">• {exp.title[lang]}</h3>
                   <div className="flex items-center text-sm text-gray-400">
                     <FaBuilding className="mr-1" /> {exp.company}
                     <span className="mx-2 text-xl">•</span>
@@ -177,16 +219,16 @@ export default function Experience({ experiences }) {
               </div>
               <div className="mt-3">
                 <div className="text-gray-400 mb-2">
-                  <span className="font-semibold text-2xl">  {/*Projet :*/}-</span> {exp.project}
+                  <span className="font-semibold text-2xl">{texts[lang].project}</span> {exp.project[lang]}
                 </div>
                 {/* Description or summary here if needed */}
                 {/* Achievements collapsible */}
                 {openId === exp.id && (
                   <div>
                     <hr className="my-3 border-[#23232a]" />
-                    <div className="font-semibold text-gray-300 mb-2">Key Achievements:</div>
+                    <div className="font-semibold text-gray-300 mb-2">{texts[lang].achievements}</div>
                     <ul className="list-disc pl-5 text-gray-500 text-xs space-y-1 mb-2">
-                      {exp.achievements.map((ach, idx) => (
+                      {exp.achievements[lang].map((ach, idx) => (
                         <li key={idx}>{ach}</li>
                       ))}
                     </ul>

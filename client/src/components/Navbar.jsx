@@ -1,19 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HiHome, HiUser, HiCollection, HiLightningBolt, HiMail, HiMenu, HiX, HiBriefcase } from 'react-icons/hi';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Navbar() {
   const navRef = useRef(null);
+  const { lang, toggleLang } = useLanguage();
   const [active, setActive] = useState('/');
   const [mobileOpen, setMobileOpen] = useState(false); // Ajout état mobile
 
   const navLinks = [
-    { label: 'Home', path: '/', icon: HiHome },
-    { label: 'About', path: '#about', icon: HiUser },
-    { label: 'Skills', path: '#compétences', icon: HiLightningBolt },
-    { label: 'Experience', path: '#expérience', icon: HiBriefcase },
-    { label: 'Projets', path: '#projets', icon: HiCollection },
-    { label: 'Contact', path: '#contact', icon: HiMail }
+    { label: { en: 'Home', fr: 'Accueil' }, path: '/', icon: HiHome },
+    { label: { en: 'About', fr: 'À propos' }, path: '#about', icon: HiUser },
+    { label: { en: 'Skills', fr: 'Compétences' }, path: '#compétences', icon: HiLightningBolt },
+    { label: { en: 'Experience', fr: 'Expérience' }, path: '#expérience', icon: HiBriefcase },
+    { label: { en: 'Projects', fr: 'Projets' }, path: '#projets', icon: HiCollection },
+    { label: { en: 'Contact', fr: 'Contact' }, path: '#contact', icon: HiMail }
   ];
 
   // Smooth scroll for hash links
@@ -67,12 +69,12 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-3 items-center ml-8">
           {navLinks.map(link => (
             <a
-              key={link.label}
+              key={link.path}
               href={link.path}
               className={`group flex items-center text-xs relative transition
                 ${active === link.path ? "scale-105 text-indigo-400" : ""}
                 ${
-                  link.label === "Contact"
+                  link.label[lang] === "Contact"
                     ? "gap-2 px-6 py-2 rounded-2xl bg-white text-black font-semibold shadow border border-black hover:bg-gray-300 mb-0"
                     : "text-white hover:bg-[#232323] hover:text-white px-2 py-1 rounded-xl"
                 }
@@ -80,10 +82,10 @@ export default function Navbar() {
               onClick={e => handleNavClick(e, link.path)}
               style={{ transition: "color 0.2s, transform 0.2s" }}
             >
-              <link.icon className={`w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110 ${active === link.path ? "text-indigo-400" : ""} ${link.label === "Contact" ? "text-black" : ""}`} />
+              <link.icon className={`w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110 ${active === link.path ? "text-indigo-400" : ""} ${link.label[lang] === "Contact" ? "text-black" : ""}`} />
               <span className="relative">
-                {link.label}
-                {link.label !== "Contact" && (
+                {link.label[lang]}
+                {link.label[lang] !== "Contact" && (
                   <span
                     className={`absolute left-0 -bottom-1 w-full h-0.5 rounded transition-transform duration-300 origin-left
                       ${active === link.path ? "scale-x-100" : "scale-x-0"} group-hover:scale-x-100 marching-underline`}
@@ -92,6 +94,14 @@ export default function Navbar() {
               </span>
             </a>
           ))}
+          {/* Language Toggle Button next to Contact */}
+          <button
+            onClick={toggleLang}
+            className="px-3 py-1 rounded-xl bg-[#232323] text-white hover:bg-[#333] transition"
+            aria-label="Toggle language"
+          >
+            {lang === 'en' ? 'FR' : 'EN'}
+          </button>
         </div>
         {/* Hamburger for mobile */}
         <button
@@ -107,21 +117,26 @@ export default function Navbar() {
 
       {/* Mobile menu: panneau qui slide sous la navbar */}
       <div
-        className={`fixed top-0 left-0 w-full z-40 md:hidden transition-all duration-300 ${
-          mobileOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-y-full opacity-0 pointer-events-none"
-        }`}
+        className={`fixed top-0 left-0 w-full z-40 md:hidden transition-all duration-300 ${mobileOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-y-full opacity-0 pointer-events-none"}`}
         style={{ marginTop: "64px" }}
       >
         <div className="bg-black border-b border-[#222] shadow-xl pt-2 pb-4 px-2 rounded-b-2xl">
-          {/* Header mobile: logo + close */}
+          {/* Header mobile: logo + close + language toggle */}
           <div className="flex items-center justify-between px-2 py-2">
-            {/* ...logo si besoin... */}
+            <div className="text-lg font-bold text-white">Menu</div>
+            <button
+              onClick={toggleLang}
+              className="px-3 py-1 rounded-xl bg-[#232323] text-white hover:bg-[#333] transition"
+              aria-label="Toggle language"
+            >
+              {lang === 'en' ? 'FR' : 'EN'}
+            </button>
           </div>
           {/* Liens */}
           <div className="flex flex-col gap-2 mt-2">
             {navLinks.map(link => (
               <a
-                key={link.label}
+                key={link.path}
                 href={link.path}
                 className={`flex items-center gap-3 text-base font-medium px-3 py-2 rounded-xl transition
                   ${
@@ -134,7 +149,7 @@ export default function Navbar() {
                 style={{ minHeight: "40px" }}
               >
                 <link.icon className="w-5 h-5" />
-                {link.label}
+                {link.label[lang]}
               </a>
             ))}
           </div>

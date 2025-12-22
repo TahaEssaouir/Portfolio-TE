@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import { HiOutlineExternalLink } from "react-icons/hi"; // Ajout de l'icône
+import { FaArrowUp } from "react-icons/fa"; // Ajouté
 
 // Copie/importe la liste realProjects ici
 const realProjects = [
@@ -60,7 +61,7 @@ const realProjects = [
     year: "2025",
     category: "Full Stack Development",
     description:
-      "Full e-commerce web application with product catalog, cart, checkout and user management for medical supplies.",
+      "Full e-commerce web application with product catalog, cart, checkout and supplier management for medical supplies.The administrator has full control over all features from the dashboard.",
     tags: ["React", "Spring Boot", "Tailwind CSS", "MySQL", "REST APIs"],
     context: "Sell medical products with compliant user experience.",
     objective: "Offer a smooth and secure shopping journey.",
@@ -311,6 +312,16 @@ export default function ProjectDetails() {
             </div>
           )}
         </div>
+      </div>
+      {/* Scroll to Top Button */}
+      <div className="flex justify-end mt-12">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-2 px-2 py-2 rounded-2xl bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-500 transition"
+        >
+          Scroll to Top
+          <FaArrowUp className="w-5 h-5 animate-bounce" />
+        </button>
       </div>
     </section>
   );

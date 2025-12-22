@@ -1,7 +1,24 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Hero({ profile }) {
+  const { lang } = useLanguage();
   const email = profile?.email || "tessaouir@gmail.com";
+
+  const texts = {
+    en: {
+      hi: "Hi, It's me",
+      years: "2022 – 2025",
+      experience: "3 years of experience",
+      quote: "\"As a Full-Stack Engineer, I design high-performance web applications that combine robustness, clarity, and scalability.\""
+    },
+    fr: {
+      hi: "Salut, c'est moi",
+      years: "2022 – 2025",
+      experience: "3 ans d'expérience",
+      quote: "\"En tant qu'ingénieur Full-Stack, je conçois des applications web haute performance qui combinent robustesse, clarté et scalabilité.\""
+    }
+  };
 
   // Animation on scroll for left and right blocks
   const leftRef = useRef(null);
@@ -52,7 +69,7 @@ export default function Hero({ profile }) {
           {/* Intro */}
           <div className="flex flex-col items-center lg:items-start">
             <p className="text-xs sm:text-sm font-medium uppercase tracking-widest text-gray-400">
-              Hi, It's me
+              {texts[lang].hi}
             </p>
 
             <h1 className="font-extrabold leading-tight tracking-wide uppercase text-teal-300 mt-1">
@@ -139,12 +156,12 @@ export default function Hero({ profile }) {
 
           {/* Mobile experience */}
           <div className="lg:hidden mt-20 text-center">
-            <div className="text-3xl font-extrabold text-teal-300">2022 – 2025</div>
-            <div className="text-gray-400 mt-1">3 years of experience</div>
+            <div className="text-3xl font-extrabold text-teal-300">{texts[lang].years}</div>
+            <div className="text-gray-400 mt-1">{texts[lang].experience}</div>
             <div className="flex items-start gap-4 mt-8 max-w-md">
               <span className="w-[5px] h-[70px] bg-teal-300" />
               <p className="italic text-gray-500">
-                "As a Full-Stack Engineer, I design high-performance web applications that combine robustness, clarity, and scalability."
+                {texts[lang].quote}
               </p>
             </div>
           </div>
@@ -157,14 +174,14 @@ export default function Hero({ profile }) {
             ${rightVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
           style={{ willChange: "opacity, transform" }}
         >
-          <div className="text-5xl font-extrabold text-teal-300">2022 – 2025</div>
-          <div className="text-gray-400 text-3xl mt-1">3 years of experience</div>
+          <div className="text-5xl font-extrabold text-teal-300">{texts[lang].years}</div>
+          <div className="text-gray-400 text-3xl mt-1">{texts[lang].experience}</div>
 
          {/*  Description */}
           <div className="flex items-start gap-4 mt-8 max-w-md">
             <span className="w-[10px] h-[150px] bg-teal-300" />
             <p className="italic text-2xl text-gray-500">
-              "As a Full-Stack Engineer, I design high-performance web applications that combine robustness, clarity, and scalability."
+              {texts[lang].quote}
             </p>
           </div>
         </div>

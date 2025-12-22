@@ -1,8 +1,49 @@
 import { HiCheckCircle } from "react-icons/hi";
-import { HiOutlineDocumentText } from "react-icons/hi2"; // Resume icon
+import { HiOutlineDocumentText } from "react-icons/hi2";
 import React, { useRef, useEffect, useState } from "react";
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function About() {
+  const { lang } = useLanguage();
+
+  // Texts for both languages
+  const texts = {
+    en: {
+      title: "✦ About Me ✦",
+      hi: "Hi, I'm ",
+      name: "Taha Essaouir.",
+      intro1: "I'm a computer and network engineer, specializing in ",
+      fullstack: "Full-Stack Engineering",
+      intro2: " with a background in networking. I create robust and scalable ",
+      webapps: "web applications",
+      intro3: " and enjoy solving real-world problems through clean and efficient design and code.",
+      passion: "Passionate about the ",
+      java: "Java ecosystem, Spring Boot",
+      and: " and modern interfaces ",
+      react: "React js, Angular.",
+      passion2: " I am always looking to learn new technologies while delivering value to the teams I work with. I have put my know-how into practice through concrete projects, such as the development of a Medical Marketplace and HR Management Applications.",
+      resume: "Resume",
+      open: "Open to work"
+    },
+    fr: {
+      title: "✦ À propos de moi ✦",
+      hi: "Bonjour, je suis ",
+      name: "Taha Essaouir.",
+      intro1: "Ingénieur en informatique et réseaux, spécialisé en ",
+      fullstack: "Full-Stack Engineering",
+      intro2: " avec une expérience en réseaux. Je crée des ",
+      webapps: "applications web",
+      intro3: " robustes et scalables et j'aime résoudre des problèmes concrets par un code propre et efficace.",
+      passion: "Passionné par l'",
+      java: "écosystème Java, Spring Boot",
+      and: " et les interfaces modernes ",
+      react: "React js, Angular.",
+      passion2: " Je cherche toujours à apprendre de nouvelles technologies tout en apportant de la valeur aux équipes avec lesquelles je travaille. J'ai mis mon savoir-faire en pratique à travers des projets concrets, comme le développement d'une marketplace médicale et d'applications RH.",
+      resume: "CV",
+      open: "Disponible"
+    }
+  };
+
   // Animation on scroll (comme Skills)
   const aboutRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -43,7 +84,7 @@ export default function About() {
         {/* Left: Text */}
         <div className="flex-1 flex flex-col justify-center items-start">
           <h2 className="about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500 mb-6 leading-tight">
-            ✦ About Me ✦
+            {texts[lang].title}
             <div className="w-20 h-1 bg-white rounded-full mt-2" />
           </h2>
           {/* premiére paragraphe */}
@@ -52,20 +93,19 @@ export default function About() {
               ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ willChange: "opacity, transform" }}
           >
-            Hi, I'm{" "}
+            {texts[lang].hi}
             <mark className="bg-[#232340] px-1 py-0.5 rounded text-white font-semibold">
-              Taha Essaouir.
+              {texts[lang].name}
             </mark>
-            {" "}I'm a computer and network engineer, specializing in
+            {texts[lang].intro1}
             <mark className="bg-[#232340] px-1 py-0.5 rounded text-white font-semibold">
-              Full-Stack Engineering
+              {texts[lang].fullstack}
             </mark>
-            {" "}with a background in
-            networking. I create robust and scalable{" "}
+            {texts[lang].intro2}
             <mark className="bg-[#232340] px-1 py-0.5 rounded text-white font-semibold">
-              web applications
+              {texts[lang].webapps}
             </mark>
-            {" "}and enjoy solving real-world problems through clean and efficient design and code.
+            {texts[lang].intro3}
           </p>
           {/* deuxième paragraphe */}
           <p
@@ -73,17 +113,15 @@ export default function About() {
               ${showSecond ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ willChange: "opacity, transform" }}
           >
-            Passionate about the{" "}
+            {texts[lang].passion}
             <mark className="bg-[#232340] px-1 py-0.5 rounded text-white font-semibold">
-              Java ecosystem ,Spring Boot
+              {texts[lang].java}
             </mark>
-            and modern interfaces{" "}
+            {texts[lang].and}
             <mark className="bg-[#232340] px-1 py-0.5 rounded text-white font-semibold">
-              React js, Angular.
+              {texts[lang].react}
             </mark>
-            {" "} I am always looking to learn new technologies while delivering value to the teams I work with.
-            I have put my know-how into practice through concrete projects, such as the
-            development of a Medical Marketplace and HR Management Applications.
+            {texts[lang].passion2}
           </p>
           {/* Stats */}
           <div className="flex flex-wrap gap-6 mt-8">
@@ -95,7 +133,7 @@ export default function About() {
               className="flex items-center gap-2 mb-2 px-6 py-2  rounded-2xl bg-white text-black font-semibold shadow border border-black hover:bg-gray-300 transition"
             >
               <HiOutlineDocumentText className="w-5 h-5" />
-              Resume
+              {texts[lang].resume}
             </a>
           </div>
         </div>
@@ -107,7 +145,7 @@ export default function About() {
               <div className="flex items-center bg-black/80  rounded-2xl px-6 py-4 min-w-[180px]">
                 <span className="flex items-center gap-2 text-green-400 font-semibold text-base">
                   <span className="inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  Open to work
+                  {texts[lang].open}
                 </span>
               </div>
             </div>

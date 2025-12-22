@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState } from "react";
 import { FaServer, FaTools, FaDatabase, FaCloud, FaCode, FaCubes } from "react-icons/fa";
 import { MdOutlineWeb } from "react-icons/md";
 import { SiSpring, SiTypescript, SiTailwindcss } from "react-icons/si";
+import { useLanguage } from '../contexts/LanguageContext';
 
 const skillsData = [
-
 	{
-		category: "Backend & Languages",
+		category: { en: "Backend & Languages", fr: "Backend & Langages" },
 		icon: <FaServer className="text-blue-400" />,
 		color: "bg-[#0c1a0c]",
 		items: [
@@ -18,9 +18,8 @@ const skillsData = [
 		{ name: "Flutter", img: "/flutter.png" },
 		],
 	},
-
 	{
-		category: "Data",
+		category: { en: "Data", fr: "Données" },
 		icon: <FaDatabase className="text-green-400" />,
 		color: "bg-[#1a1a2a]",
 		items: [
@@ -30,9 +29,8 @@ const skillsData = [
       { name: "MongoDB", img: "/mongodb.png" },
 		],
 	},
-
 	{
-		category: "Frontend",
+		category: { en: "Frontend", fr: "Frontend" },
 		icon: <MdOutlineWeb className="text-purple-400" />,
 		color: "bg-[#0c223a]",
 		items: [
@@ -40,12 +38,10 @@ const skillsData = [
 			{ name: "Angular", img: "/angular.png" },
 			{ name: "TypeScript", img: "/typescript.png" },
 			{ name: "Tailwind CSS", img: "/tailwindcss.png" },
-     
 		],
 	},
-
 	{
-		category: "DevOps & Tools",
+		category: { en: "DevOps & Tools", fr: "DevOps & Outils" },
 		icon: <FaTools className="text-orange-400" />,
 		color: "bg-[#1a1020]",
 		items: [
@@ -54,11 +50,8 @@ const skillsData = [
 	   { name: "Docker", img: "/docker.png" },
       { name: "Azure DevOps" },
       { name: "Postman", img: "/postman.png" },
-     
-      
 		],
 	},
-
 ];
 
 const marqueeStyle = `
@@ -97,6 +90,17 @@ const marqueeStyle = `
 `;
 
 export default function Skills() {
+	const { lang } = useLanguage();
+
+	const texts = {
+		en: {
+			title: "✦ Skills ✦",
+		},
+		fr: {
+			title: "✦ Compétences ✦",
+		}
+	};
+
 	// Animation on scroll (comme Experience)
 	const cardRefs = useRef([]);
 	const [visible, setVisible] = useState(() => Array(skillsData.length).fill(false));
@@ -158,14 +162,14 @@ export default function Skills() {
       ${visible.some((v) => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
 					style={{ willChange: "opacity, transform" }}
 				>
-					✦ Skills ✦
+					{texts[lang].title}
 				</span>
 			</div>
 			{/* Cards Skills */}
 			<div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-start">
 				{skillsData.map((cat, idx) => (
 					<div
-						key={cat.category}
+						key={cat.category[lang]}
 						ref={(el) => (cardRefs.current[idx] = el)}
 						className={`bg-black rounded-2xl p-6 w-full max-w-md border-2 border-[#23232a] shadow-lg transition-all duration-500
               hover:bg-[#18181b] hover:border-gray-600 hover:shadow-2xl
@@ -176,7 +180,7 @@ export default function Skills() {
 							<div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#23232a] text-2xl">
 								{cat.icon}
 							</div>
-							<h2 className="text-xl font-bold text-white">{cat.category}</h2>
+							<h2 className="text-xl font-bold text-white">{cat.category[lang]}</h2>
 						</div>
 						<div className="flex flex-wrap gap-3">
 							{cat.items.map((item) => (

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { LanguageProvider } from './contexts/LanguageContext';
+
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
@@ -20,7 +22,6 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [education, setEducation] = useState([]);
   const [skills, setSkills] = useState([]);
-
 
   useEffect(() => {
     async function fetchData() {
@@ -49,32 +50,34 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <CustomCursor />
-      <Navbar />
-      <main className="pt-16">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                profile={profile}
-                experiences={experiences}
-                projects={projects}
-                education={education}
-                skills={skills}
-              />
-            }
-          />
-          <Route path="/about" element={<About profile={profile} />} />
-          <Route path="/projects" element={<ProjectsPage projects={projects} />} />
-          <Route path="/skills" element={<SkillsPage skills={skills} />} />
-          <Route path="/contact" element={<ContactPage profile={profile} />} />
-          <Route path="/projects/:id" element={<ProjectDetails />} />
-        </Routes>
-      </main>
-      <Footer />
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <CustomCursor />
+        <Navbar />
+        <main className="pt-16">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  profile={profile}
+                  experiences={experiences}
+                  projects={projects}
+                  education={education}
+                  skills={skills}
+                />
+              }
+            />
+            <Route path="/about" element={<About profile={profile} />} />
+            <Route path="/projects" element={<ProjectsPage projects={projects} />} />
+            <Route path="/skills" element={<SkillsPage skills={skills} />} />
+            <Route path="/contact" element={<ContactPage profile={profile} />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </LanguageProvider>
   );
 }
 
