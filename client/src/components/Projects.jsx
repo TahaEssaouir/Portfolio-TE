@@ -35,7 +35,7 @@ const realProjects = [
 
   {
     id: 3,
-    image: "/projects/conge.png",
+    image: "/projects/congé/cn3.png",
     title: "Leave and absence management application",
     year: "2024",
     category: "Full Stack Development",
@@ -48,7 +48,7 @@ const realProjects = [
     id: 4,
     image: "/projects/potfolio.png",
     title: "Potfolio Website",
-    year: "2024",
+    year: "2025",
     category: "Full Stack Development",
     description:
       "A local application to manage employee leave and absences, with request submission, approval workflows and reporting features.",
@@ -95,7 +95,7 @@ export default function Projects({ projects }) {
               {/* <p className="text-gray-300 text-lg mb-1">{project.category}</p> */}
               <p className="mb-6 text-gray-400">{project.description}</p>
               <div className="flex flex-wrap gap-3 mt-auto">
-                <h4 className="text-sm text-gray-400 mr-2">Technologies:</h4>
+                
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}

@@ -51,6 +51,7 @@ const realProjects = [
     role: "Developer",
     type: "Personal Project",
     demo: "https://magic-quiz-v2-d6l8.vercel.app/",
+    status: "Under development",
   },
   {
     id: 2,
@@ -84,10 +85,14 @@ const realProjects = [
       "/projects/Med_Timo/mt7.png",
       "/projects/Med_Timo/mt8.png",
       "/projects/Med_Timo/mt9.png",
+      "/projects/Med_Timo/mt10.png",
+      "/projects/Med_Timo/mt11.png",
+      "/projects/Med_Timo/mt12.png",
     ],
     role: "Developer",
     type: "Academic Project",
     demo: "https://medi-market-bj3z.vercel.app/", 
+    status: "Released",
   },
   {
     id: 3,
@@ -113,19 +118,24 @@ const realProjects = [
       "Responsive and user-friendly interface"
     ],
     gallery: [
-      "/projects/Conge/conge1.png",
-      "/projects/Conge/conge2.png",
-      "/projects/Conge/conge3.png"
+        "/projects/congé/cn1.png",
+        "/projects/congé/cn2.png",
+        "/projects/congé/cn3.png",
+      "/projects/congé/cn4.png",
+        "/projects/congé/cn5.png",
+        "/projects/congé/cn6.png",
+        "/projects/congé/cn7.png",
     ],
     role: "Developer",
     type: "Academic Project",
     demo: "https://your-leave-demo-link.com", // Remplace par ton vrai lien si besoin
+    status: "Released",
   },
   {
     id: 4,
     image: "/projects/potfolio.png",
     title: "Portfolio Website",
-    year: "2024",
+    year: "2025",
     category: "Full Stack Development",
     description:
       "Personal portfolio website to showcase my projects, skills, and experience as a full stack engineer.",
@@ -150,6 +160,7 @@ const realProjects = [
     role: "Developer",
     type: "Personal Project",
     demo: "https://your-portfolio-demo-link.com", // potfolio.png
+    status: "Under development",
   },
 ];
 
@@ -165,6 +176,17 @@ export default function ProjectDetails() {
       if (section) section.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }, [navigate]);
+
+  // Status badge style
+  const statusColor =
+    project.status === "Released"
+      ? "bg-green-900 text-green-300"
+      : "bg-[#232a1a] text-green-200";
+
+  const statusDot =
+    project.status === "Released"
+      ? "bg-green-500"
+      : "bg-green-500";
 
   if (!project) {
     return <div className="text-center text-red-500 mt-10">Project not found.</div>;
@@ -182,6 +204,11 @@ export default function ProjectDetails() {
         {/* Left: Main info (sticky/fixed) */}
         <div className="md:col-span-1 flex flex-col gap-6 md:sticky md:top-24 self-start h-fit">
           <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
+          {/* Status badge déplacé ici */}
+          <div className={`inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium ${statusColor} mb-3 w-max`}>
+            <span className={`inline-block w-3 h-3 rounded-full ${statusDot} mr-2`} />
+            {project.status}
+          </div>
           <p className="text-gray-500 mb-4">{project.description}</p>
           {/* tags  */}
           <div className="flex gap-4 mb-2">
@@ -192,6 +219,10 @@ export default function ProjectDetails() {
             <div>
               <div className="text-xs text-gray-400 uppercase">Role</div>
               <div className="font-semibold">{project.role}</div>
+            </div>
+            <div>
+              <div className="text-xs text-gray-400 uppercase">Year</div>
+              <div className="font-semibold">{project.year}</div>
             </div>
           </div>
           <button
@@ -204,7 +235,7 @@ export default function ProjectDetails() {
         </div>
 
         {/* Right: Details (scrollable on desktop) */}
-        <div className="md:col-span-2 flex flex-col gap-8 md:max-h-[80vh] md:overflow-y-auto pr-2">
+        <div className="md:col-span-2 flex flex-col gap-8">
           {/* tags  */}
           <div className="flex flex-wrap gap-2 mb-4">
             <h3>Technologies:</h3>
@@ -255,11 +286,12 @@ export default function ProjectDetails() {
               ))}
             </ul>
             {/* Title "Scroll" with effect - déplacé plus haut */}
-            <div className="w-full flex justify-center mt-2 mb-6">
+           {/* <div className="w-full flex justify-center mt-2 mb-6">
               <span className="text-indigo-400 text-lg font-bold animate-bounce tracking-widest select-none">
                 ↓ Scroll for more ↓
               </span>
-            </div>
+            </div>*/}
+
           </div>
 
           {/* Gallery */}
