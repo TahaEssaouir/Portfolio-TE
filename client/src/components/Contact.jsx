@@ -1,6 +1,7 @@
 import { HiOutlineMail } from "react-icons/hi";
 import { FaLinkedinIn, FaGithub, FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 import { useLanguage } from '../contexts/LanguageContext';
+import { useRef, useEffect, useState } from "react";
 
 export default function Contact() {
   const { lang } = useLanguage();
@@ -34,27 +35,72 @@ export default function Contact() {
     }
   };
 
+  // Animation on scroll (comme Education)
+  const containerRef = useRef(null);
+  const [visible, setVisible] = useState(() => Array(4).fill(false)); // 4 cards
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Animate cards sequentially
+          for (let i = 0; i < 4; i++) {
+            setTimeout(() => {
+              setVisible((prev) => {
+                const newVisible = [...prev];
+                newVisible[i] = true;
+                return newVisible;
+              });
+            }, i * 200); // 200ms delay between each card
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-black">
       <div className="mb-12 flex flex-col items-center justify-center">
         {/* title */}
-        <h2 className="about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500">
+        <h2 className={`about-title text-4xl font-semibold tracking-widest text-indigo-500 uppercase select-none px-4 py-1 transition-all duration-500
+          ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
+          style={{ willChange: "opacity, transform" }}
+        >
           {texts[lang].title}
         </h2>
         {/* description */}
-        <p className="text-center text-gray-500 text-sm">
+        <p className={`text-center text-gray-500 text-sm transition-all duration-500
+          ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
+          style={{ willChange: "opacity, transform" }}
+        >
           {texts[lang].desc1}
         </p>
-        <p className="text-center text-gray-500 text-sm">
+        <p className={`text-center text-gray-500 text-sm transition-all duration-500
+          ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
+          style={{ willChange: "opacity, transform" }}
+        >
           {texts[lang].desc2}
         </p>
       </div>
       {/* Contact Cards Section */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-12">
+      <div ref={containerRef} className="flex flex-col md:flex-row justify-center items-center gap-6 mt-12">
         {/* Email Card */}
         <a
           href="mailto:tessaouir@gmail.com"
-          className="group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-pink-500 cursor-pointer focus:outline-none"
+          className={`group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-pink-500 cursor-pointer focus:outline-none
+            ${visible[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
         >
           <div className="mb-3">
             <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border-2 border-transparent bg-black text-white text-xl transition-all duration-300 group-hover:border-none group-hover:bg-black group-hover:text-white email-gradient-border">
@@ -80,7 +126,9 @@ export default function Contact() {
           href="https://www.linkedin.com/in/taha-essaouir-26228a168/"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-blue-500 cursor-pointer focus:outline-none"
+          className={`group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-blue-500 cursor-pointer focus:outline-none
+            ${visible[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
         >
           <div className="mb-3">
             <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border-2 border-blue-500 bg-black text-white text-xl transition-all duration-300">
@@ -103,7 +151,9 @@ export default function Contact() {
           href="https://github.com/TahaEssaouir?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-purple-500 cursor-pointer focus:outline-none"
+          className={`group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-purple-500 cursor-pointer focus:outline-none
+            ${visible[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
         >
           <div className="mb-3">
             <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border-2 border-purple-500 bg-black text-white text-xl transition-all duration-300">
@@ -123,7 +173,9 @@ export default function Contact() {
         </a>
         {/* Phone Card */}
         <div
-          className="group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-green-500 cursor-pointer focus:outline-none"
+          className={`group relative bg-[#111113] rounded-2xl p-4 w-full max-w-[210px] flex flex-col items-start shadow-lg border border-[#232323] transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-green-500 cursor-pointer focus:outline-none
+            ${visible[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ willChange: "opacity, transform" }}
         >
           <div className="mb-3">
             <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border-2 border-green-500 bg-black text-green-400 text-xl transition-all duration-300">

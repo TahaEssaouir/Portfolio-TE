@@ -64,7 +64,16 @@ export default function Navbar() {
         className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 flex items-center justify-between px-6 md:px-24 py-4 shadow transition-all duration-700 opacity-100 translate-y-0 animate-navbarFadeIn border-b border-[#222]"
         style={{ willChange: "opacity, transform" }}
       >
-        <div className="text-2xl font-bold text-white">Taha</div>
+        {/* Logo + Name */}
+        <div className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="w-10 h-10 mr-3 rounded-full border border-[#232323] bg-black"
+            style={{ objectFit: "cover" }}
+          />
+          
+        </div>
         {/* Desktop links */}
         <div className="hidden md:flex space-x-3 items-center ml-8">
           {navLinks.map(link => (
@@ -123,7 +132,15 @@ export default function Navbar() {
         <div className="bg-black border-b border-[#222] shadow-xl pt-2 pb-4 px-2 rounded-b-2xl">
           {/* Header mobile: logo + close + language toggle */}
           <div className="flex items-center justify-between px-2 py-2">
-            <div className="text-lg font-bold text-white">Menu</div>
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="w-8 h-8 mr-2 rounded-full border border-[#232323] bg-black"
+                style={{ objectFit: "cover" }}
+              />
+              <span className="text-lg font-bold text-white">Menu</span>
+            </div>
             <button
               onClick={toggleLang}
               className="px-3 py-1 rounded-xl bg-[#232323] text-white hover:bg-[#333] transition"

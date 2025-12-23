@@ -1,31 +1,49 @@
 import React, { useRef, useEffect, useState } from "react";
 import { FaGraduationCap, FaUniversity, FaMapMarkerAlt } from "react-icons/fa";
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Données extraites de votre CV/Image
 const realEducation = [
   {
     id: 1,
-    school: "Moroccan School of Engineering Sciences (EMSI)",
-    degree: "Computer and network engineer, MIAGE option",
+    school: { en: "Moroccan School of Engineering Sciences (EMSI)", fr: "École Marocaine des Sciences de l'Ingénieur (EMSI)" },
+    degree: { en: "Computer and network engineer, MIAGE option", fr: "Ingénieur en informatique et réseaux, option MIAGE" },
     location: "Casablanca, Morocco",
     start_year: "2022",
     end_year: "2025",
-    description: "In-depth engineering training focused on software development (Java/J2EE, .NET), web architecture, mobile development, network and systems development and administration.",
+    description: { 
+      en: "In-depth engineering training focused on software development (Java/J2EE, .NET), web architecture, mobile development, network and systems development and administration.",
+      fr: "Formation d'ingénieur approfondie axée sur le développement logiciel (Java/J2EE, .NET), l'architecture web, le développement mobile, le développement et l'administration des réseaux et systèmes."
+    },
     image: "/emsi.png", // ajout de l'image EMSI
   },
   {
     id: 2,
-    school: "Specialized Institute of Applied Technology (ISTA)",
-    degree: "Diploma of Specialized Technician in Computer Networks",
+    school: { en: "Specialized Institute of Applied Technology (ISTA)", fr: "Institut Spécialisé de Technologie Appliquée (ISTA)" },
+    degree: { en: "Diploma of Specialized Technician in Computer Networks", fr: "Diplôme de Technicien Spécialisé en Réseaux Informatiques" },
     location: "Casablanca, Morocco",
     start_year: "2020",
     end_year: "2022",
-    description: "Specialized technical training in network administration, computer maintenance and system security (Cisco, Linux, Windows Server).",
+    description: { 
+      en: "Specialized technical training in network administration, computer maintenance and system security (Cisco, Linux, Windows Server).",
+      fr: "Formation technique spécialisée en administration réseau, maintenance informatique et sécurité des systèmes (Cisco, Linux, Windows Server)."
+    },
     image: "/ofppt.png", // ajout de l'image OFPPT
   }
 ];
 
 export default function Education({ education }) {
+  const { lang } = useLanguage();
+
+  const texts = {
+    en: {
+      title: "✦ Education ✦",
+    },
+    fr: {
+      title: "✦ Formation ✦",
+    }
+  };
+
   const data = education && education.length > 0 ? education : realEducation;
 
   // Animation on scroll (comme Experience)
@@ -74,7 +92,7 @@ export default function Education({ education }) {
               ${visible.some(v => v) ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
             style={{ willChange: "opacity, transform" }}
           >
-            ✦ Education ✦
+            {texts[lang].title}
           </span>
         </div>
         <div className="space-y-8">
@@ -95,11 +113,11 @@ export default function Education({ education }) {
                   {edu.image ? (
                     <img
                       src={edu.image}
-                      alt={edu.school}
+                      alt={edu.school[lang]}
                       className={
-                        edu.school.includes("EMSI")
+                        edu.school[lang].includes("EMSI")
                           ? "object-contain w-16 h-16 scale-110"
-                          : edu.school.includes("ISTA")
+                          : edu.school[lang].includes("ISTA")
                           ? "object-contain w-16 h-16 scale-110"
                           : "object-contain w-12 h-12"
                       }
@@ -113,9 +131,9 @@ export default function Education({ education }) {
                 <div className="flex-1">
                   {/* Desktop layout */}
                   <div className="hidden sm:block">
-                    <h3 className="text-lg font-bold text-white">• {edu.school}</h3>
+                    <h3 className="text-lg font-bold text-white">• {edu.school[lang]}</h3>
                     <div className="flex items-center text-sm text-gray-400">
-                      <FaUniversity className="mr-1" /> {edu.degree}
+                      <FaUniversity className="mr-1" /> {edu.degree[lang]}
                       <span className="mx-2 text-xl">•</span>
                       <FaMapMarkerAlt className="mr-1" /> {edu.location}
                     </div>
@@ -125,9 +143,9 @@ export default function Education({ education }) {
                   </div>
                   {/* Mobile layout */}
                   <div className="block sm:hidden">
-                    <h3 className="text-base font-bold text-white mb-1">• {edu.school}</h3>
+                    <h3 className="text-base font-bold text-white mb-1">• {edu.school[lang]}</h3>
                     <div className="text-sm text-gray-400 mb-1 flex items-center">
-                      <FaUniversity className="mr-1" /> {edu.degree}
+                      <FaUniversity className="mr-1" /> {edu.degree[lang]}
                     </div>
                     <div className="text-sm text-gray-400 mb-1 flex items-center">
                       <FaMapMarkerAlt className="mr-1" /> {edu.location}
@@ -139,7 +157,7 @@ export default function Education({ education }) {
                 </div>
               </div>
               <div className="mt-3">
-                <div className="text-gray-400 text-sm">{edu.description}</div>
+                <div className="text-gray-400 text-sm">{edu.description[lang]}</div>
               </div>
             </div>
           ))}

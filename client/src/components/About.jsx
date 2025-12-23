@@ -9,7 +9,7 @@ export default function About() {
   // Texts for both languages
   const texts = {
     en: {
-      title: "✦ About Me ✦",
+      title: "✦ About ✦",
       hi: "Hi, I'm ",
       name: "Taha Essaouir.",
       intro1: "I'm a computer and network engineer, specializing in ",
@@ -26,7 +26,7 @@ export default function About() {
       open: "Open to work"
     },
     fr: {
-      title: "✦ À propos de moi ✦",
+      title: "✦ À propos ✦",
       hi: "Bonjour, je suis ",
       name: "Taha Essaouir.",
       intro1: "Ingénieur en informatique et réseaux, spécialisé en ",
