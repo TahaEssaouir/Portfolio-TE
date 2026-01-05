@@ -93,7 +93,7 @@ export default function Navbar() {
                 ${active === link.path ? "scale-105 text-indigo-400" : ""}
                 ${
                   link.label[lang] === "Contact"
-                    ? "gap-2 px-6 py-2 rounded-2xl bg-white text-black font-semibold shadow border border-black hover:bg-gray-300 mb-0"
+                    ? "gap-2 px-6 py-2 rounded-2xl bg-gray-100 text-black font-semibold shadow border border-black hover:bg-gray-300 mb-0"
                     : "text-white hover:bg-[#232323] hover:text-white px-2 py-1 rounded-xl"
                 }
               `}
