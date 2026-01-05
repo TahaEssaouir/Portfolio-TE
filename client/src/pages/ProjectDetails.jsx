@@ -17,7 +17,7 @@ const realProjects = [
       fr: "Projet SaaS personnel permettant aux enseignants et étudiants de collaborer sur des cours, quiz et flashcards avec génération de contenu alimentée par l'IA."
     },
     tags: [
-      "React",
+      "React Js",
       "Django",
       "Tailwind CSS",
       "PostgreSQL",
@@ -82,7 +82,7 @@ const realProjects = [
       en: "Full e-commerce web application with product catalog, cart, checkout and supplier management for medical supplies.The administrator has full control over all features from the dashboard.",
       fr: "Application web e-commerce complète avec catalogue de produits, panier, paiement et gestion des fournisseurs pour les fournitures médicales. L'administrateur a un contrôle total sur toutes les fonctionnalités depuis le tableau de bord."
     },
-    tags: ["React", "Spring Boot", "Tailwind CSS", "MySQL", "REST APIs"],
+    tags: ["React Js", "Spring Boot", "Tailwind CSS", "MySQL", "REST APIs"],
     context: { en: "Sell medical products with compliant user experience.", fr: "Vendre des produits médicaux avec une expérience utilisateur conforme." },
     objective: { en: "Offer a smooth and secure shopping journey.", fr: "Offrir un parcours d'achat fluide et sécurisé." },
     challenge: {
@@ -192,7 +192,7 @@ const realProjects = [
       en: "Personal portfolio website to showcase my projects, skills, and experience as a full stack engineer.",
       fr: "Site web portfolio personnel pour présenter mes projets, compétences et expériences en tant qu'ingénieur full stack."
     },
-    tags: ["React", "Tailwind CSS", "Express Js", "PostgreSQL"],
+    tags: ["React Js", "Tailwind CSS", "Express Js", "PostgreSQL"],
     context: { en: "Create a professional online presence and centralize all my work and contact information.", fr: "Créer une présence en ligne professionnelle et centraliser tout mon travail et mes informations de contact." },
     objective: { en: "Showcase my skills, projects, and experience in a modern, interactive, and responsive way.", fr: "Présenter mes compétences, projets et expériences de manière moderne, interactive et responsive." },
     challenge: {

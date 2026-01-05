@@ -16,7 +16,7 @@ export const LanguageProvider = ({ children }) => {
   );
 };
 
-// ✅ نضيفو هذا
+
 export const useLanguage = () => {
   return useContext(LanguageContext);
 };

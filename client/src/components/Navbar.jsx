@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { HiHome, HiUser, HiCollection, HiLightningBolt, HiMail, HiMenu, HiX, HiBriefcase } from 'react-icons/hi';
+import { HiHome, HiUser, HiCollection, HiLightningBolt, HiMail, HiMenu, HiX, HiBriefcase, HiGlobeAlt } from 'react-icons/hi';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Navbar() {
@@ -66,13 +66,22 @@ export default function Navbar() {
       >
         {/* Logo + Name */}
         <div className="flex items-center">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="w-10 h-10 mr-3 rounded-full border border-[#232323] bg-black"
-            style={{ objectFit: "cover" }}
-          />
-          
+          <a 
+            href="/" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              setActive('/');
+            }}
+            className="cursor-pointer"
+          >
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-10 h-10 mr-3 rounded-full border border-[#232323] bg-black hover:scale-110 transition-transform duration-200"
+              style={{ objectFit: "cover" }}
+            />
+          </a>
         </div>
         {/* Desktop links */}
         <div className="hidden md:flex space-x-3 items-center ml-8">
@@ -106,9 +115,10 @@ export default function Navbar() {
           {/* Language Toggle Button next to Contact */}
           <button
             onClick={toggleLang}
-            className="px-3 py-1 rounded-xl bg-[#232323] text-white hover:bg-[#333] transition"
+            className="px-3 py-1 rounded-xl bg-white text-black hover:bg-gray-200 transition font-semibold hover:scale-110 active:scale-95 shadow-md hover:shadow-lg lang-btn-animated flex items-center gap-1.5"
             aria-label="Toggle language"
           >
+            <HiGlobeAlt className="w-4 h-4" />
             {lang === 'en' ? 'FR' : 'EN'}
           </button>
         </div>
@@ -131,8 +141,8 @@ export default function Navbar() {
       >
         <div className="bg-black border-b border-[#222] shadow-xl pt-2 pb-4 px-2 rounded-b-2xl">
           {/* Header mobile: logo + close + language toggle */}
-          <div className="flex items-center justify-between px-2 py-2">
-            <div className="flex items-center">
+          <div className="flex items-center justify-end px-2 py-2">
+           {/* <div className="flex items-center">
               <img
                 src="/logo.png"
                 alt="Logo"
@@ -140,12 +150,13 @@ export default function Navbar() {
                 style={{ objectFit: "cover" }}
               />
               <span className="text-lg font-bold text-white">Menu</span>
-            </div>
+            </div>*/}
             <button
               onClick={toggleLang}
-              className="px-3 py-1 rounded-xl bg-[#232323] text-white hover:bg-[#333] transition"
+              className="px-3 py-1 rounded-xl bg-white text-black hover:bg-gray-200 transition font-semibold hover:scale-110 active:scale-95 shadow-md hover:shadow-lg lang-btn-animated flex items-center gap-1.5"
               aria-label="Toggle language"
             >
+              <HiGlobeAlt className="w-4 h-4" />
               {lang === 'en' ? 'FR' : 'EN'}
             </button>
           </div>
@@ -202,6 +213,31 @@ export default function Navbar() {
         }
         .animate-navbarFadeIn {
           animation: navbarFadeIn 0.7s ease-out forwards;
+        }
+        .lang-btn-animated {
+          position: relative;
+          border: 2px solid transparent;
+          background-image: 
+            linear-gradient(white, white),
+            repeating-linear-gradient(
+              90deg,
+              #6366f1 0px,
+              #6366f1 8px,
+              #a78bfa 8px,
+              #a78bfa 16px
+            );
+          background-origin: border-box;
+          background-clip: padding-box, border-box;
+          background-size: 100% 100%, 32px 100%;
+          animation: marchingBorder 0.8s linear infinite;
+        }
+        @keyframes marchingBorder {
+          0% {
+            background-position: 0 0, 0 0;
+          }
+          100% {
+            background-position: 0 0, 32px 0;
+          }
         }
       `}</style>
     </>
